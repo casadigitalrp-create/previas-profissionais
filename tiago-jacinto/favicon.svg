@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tiago Jacinto, advocacia">
+  <rect width="64" height="64" rx="14" fill="#0C1624"/>
+  <path d="M32 11v34M20 17h24" stroke="#C9A45C" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M20 17 12 33a8.5 8.5 0 0 0 16 0L20 17ZM44 17l-8 16a8.5 8.5 0 0 0 16 0l-8-16Z" fill="none" stroke="#F3EEE2" stroke-width="2.6" stroke-linejoin="round"/>
+  <path d="M22 50h20" stroke="#C9A45C" stroke-width="3.2" stroke-linecap="round"/>
+</svg>
