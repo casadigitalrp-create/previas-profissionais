@@ -1,0 +1,26 @@
+---
+import type { Obra } from "../data/obras";
+import { url } from "../data/site";
+import Ilustracao from "./Ilustracao.astro";
+
+interface Props {
+  obra: Obra;
+}
+
+const { obra } = Astro.props;
+---
+
+<article
+  class="group relative flex flex-col overflow-hidden rounded-xl border border-borda bg-superficie transition hover:-translate-y-1 hover:shadow-lg"
+  data-categoria={obra.categoria}
+>
+  <Ilustracao desenho={obra.desenho} />
+  <div class="flex flex-1 flex-col p-5">
+    <p class="text-xs font-semibold uppercase tracking-widest text-tijolo">{obra.categoria}</p>
+    <h3 class="mt-2 text-xl font-bold">
+      <a href={url(`obras/${obra.slug}/`)} class="after:absolute after:inset-0">{obra.titulo}</a>
+    </h3>
+    <p class="mt-2 text-suave">{obra.resumo}</p>
+    <p class="mt-auto pt-4 text-sm text-suave">{obra.area} · {obra.prazo}</p>
+  </div>
+</article>

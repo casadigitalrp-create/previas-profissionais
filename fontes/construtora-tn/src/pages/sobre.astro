@@ -1,0 +1,82 @@
+---
+import CabecalhoPagina from "../components/CabecalhoPagina.astro";
+import Cta from "../components/Cta.astro";
+import { site } from "../data/site";
+import Layout from "../layouts/Layout.astro";
+
+const valores = [
+  {
+    titulo: "Transparência",
+    texto: "Você sabe o que está sendo feito, quanto custou e o que vem a seguir.",
+  },
+  {
+    titulo: "Responsabilidade técnica",
+    texto: "Toda obra tem engenheiro responsável e ART registrada no CREA.",
+  },
+  {
+    titulo: "Palavra cumprida",
+    texto: "Prazo e orçamento combinados por escrito, e mudanças só com aprovação.",
+  },
+  {
+    titulo: "Capricho",
+    texto: "O que fica escondido na parede é feito com o mesmo cuidado do acabamento.",
+  },
+];
+---
+
+<Layout
+  titulo="Sobre"
+  descricao="Conheça a Construtora TN e o engenheiro civil Tiago Nascimento, responsável técnico pelas obras."
+>
+  <CabecalhoPagina
+    rotulo="Sobre a TN"
+    titulo="Uma construtora feita por quem conhece o canteiro de perto."
+    texto="A Construtora TN nasceu da trajetória do engenheiro civil Tiago Nascimento: do sertão baiano aos canteiros de São Paulo."
+  />
+
+  <section class="mx-auto grid max-w-6xl gap-12 px-4 pt-20 md:grid-cols-[1fr_1.3fr]">
+    <div
+      class="regua flex aspect-[4/5] items-end rounded-2xl border border-borda bg-superficie-2 p-6"
+      role="img"
+      aria-label="Espaço reservado para a foto do Tiago"
+    >
+      <p class="rounded-md bg-superficie px-3 py-2 text-sm text-suave">Foto do Tiago (a enviar)</p>
+    </div>
+    <div class="reveal space-y-5 text-lg text-suave">
+      <h2 class="text-3xl font-extrabold text-texto">A história</h2>
+      <p>
+        Tiago cresceu na Bahia e foi para São Paulo estudar Engenharia Civil. Entre estágio de dia e faculdade
+        à noite, aprendeu que obra boa se faz com planejamento, presença e respeito ao dinheiro de quem constrói.
+      </p>
+      <p>
+        A TN existe para que o cliente não precise passar pelo que mais se ouve por aí: obra atrasada, orçamento
+        que não para de crescer e empresa que some.
+      </p>
+      <p class="text-sm">
+        Texto ilustrativo. A trajetória real, a formação e o registro profissional serão confirmados com o Tiago.
+      </p>
+      <p class="rounded-lg border border-borda bg-superficie p-4 text-base text-texto">
+        <strong>Responsável técnico:</strong>
+        {site.responsavel}<br />
+        <strong>Registro:</strong>
+        {site.crea}
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pt-24" aria-labelledby="valores">
+    <h2 id="valores" class="reveal text-3xl font-extrabold md:text-4xl">No que a gente acredita</h2>
+    <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        valores.map((v) => (
+          <li class="reveal rounded-xl border border-borda bg-superficie p-6">
+            <h3 class="text-lg font-bold">{v.titulo}</h3>
+            <p class="mt-2 text-suave">{v.texto}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <Cta />
+</Layout>

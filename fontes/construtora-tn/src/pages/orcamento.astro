@@ -1,0 +1,143 @@
+---
+import CabecalhoPagina from "../components/CabecalhoPagina.astro";
+import { servicos } from "../data/servicos";
+import { site, url } from "../data/site";
+import Layout from "../layouts/Layout.astro";
+
+const campo =
+  "mt-1.5 w-full rounded-md border border-borda bg-fundo px-3 py-2.5 text-texto focus:border-tijolo";
+---
+
+<Layout titulo="Orçamento" descricao="Peça um orçamento à Construtora TN para construção, reforma, projeto ou laudo.">
+  <CabecalhoPagina
+    rotulo="Orçamento"
+    titulo="Conte sobre a sua obra."
+    texto="Quanto mais detalhes, mais certeira é a primeira conversa. Responder leva uns 2 minutos."
+  />
+
+  <section class="mx-auto grid max-w-6xl gap-10 px-4 pt-14 lg:grid-cols-[1.4fr_1fr]">
+    <form id="form-orcamento" class="space-y-5 rounded-2xl border border-borda bg-superficie p-6 md:p-8" novalidate>
+      <p class="rounded-md bg-tijolo-suave p-3 text-sm">
+        <strong>Formulário de demonstração:</strong> nesta prévia, nenhum dado é enviado ou guardado.
+      </p>
+
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="block font-medium">
+          Seu nome
+          <input name="nome" required autocomplete="name" class={campo} />
+        </label>
+        <label class="block font-medium">
+          WhatsApp
+          <input name="whatsapp" required type="tel" autocomplete="tel" inputmode="tel" placeholder="(00) 00000-0000" class={campo} />
+        </label>
+      </div>
+
+      <label class="block font-medium">
+        O que você precisa?
+        <select name="servico" required class={campo}>
+          <option value="">Escolha uma opção</option>
+          {servicos.map((s) => <option>{s.titulo}</option>)}
+          <option>Ainda não sei</option>
+        </select>
+      </label>
+
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="block font-medium">
+          Cidade da obra
+          <input name="cidade" autocomplete="address-level2" class={campo} />
+        </label>
+        <label class="block font-medium">
+          Área aproximada (m²)
+          <input name="area" inputmode="numeric" class={campo} />
+        </label>
+      </div>
+
+      <fieldset>
+        <legend class="font-medium">Quando quer começar?</legend>
+        <div class="mt-2 flex flex-wrap gap-3">
+          {
+            ["Em até 3 meses", "De 3 a 6 meses", "Ainda estou planejando"].map((op) => (
+              <label class="flex items-center gap-2 rounded-md border border-borda px-3 py-2">
+                <input type="radio" name="inicio" value={op} class="accent-[var(--tijolo)]" />
+                {op}
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <label class="block font-medium">
+        Conte um pouco mais
+        <textarea name="mensagem" rows="4" class={campo} placeholder="Tem projeto? Terreno? Algo que preocupa?"></textarea>
+      </label>
+
+      <p id="erro" class="hidden font-medium text-tijolo" role="alert"></p>
+
+      <button type="submit" class="w-full rounded-md bg-tijolo px-6 py-3 font-semibold text-tijolo-texto hover:brightness-110">
+        Montar pedido de orçamento
+      </button>
+
+      <div id="resultado" class="hidden rounded-md border border-borda bg-fundo p-4" tabindex="-1">
+        <p class="font-semibold">Pedido montado ✓</p>
+        <p class="mt-1 text-sm text-suave">
+          Na versão final, este resumo segue para o WhatsApp da TN e para a planilha de atendimento (n8n).
+        </p>
+        <pre id="resumo" class="mt-3 whitespace-pre-wrap font-sans text-sm"></pre>
+      </div>
+    </form>
+
+    <aside class="space-y-5">
+      <div class="rounded-2xl border border-borda bg-superficie p-6">
+        <h2 class="text-xl font-bold">O que acontece depois</h2>
+        <ol class="mt-4 list-decimal space-y-2 pl-5 text-suave">
+          <li>A TN responde em até 1 dia útil pelo WhatsApp.</li>
+          <li>Marcamos uma conversa ou visita.</li>
+          <li>Você recebe orçamento por etapa e cronograma.</li>
+        </ol>
+        <p class="mt-3 text-xs text-suave">Prazos de resposta ilustrativos, a confirmar.</p>
+      </div>
+      <div class="rounded-2xl border border-borda bg-superficie p-6 text-suave">
+        <h2 class="text-xl font-bold text-texto">Outros canais</h2>
+        <p class="mt-3">{site.cidade}</p>
+        <p>{site.horario}</p>
+        <p>WhatsApp e e-mail a confirmar</p>
+        <p class="mt-4 text-sm">
+          Seus dados serão tratados conforme a
+          <a href={url("politica-de-privacidade/")} class="text-tijolo underline">política de privacidade</a>.
+        </p>
+      </div>
+    </aside>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById("form-orcamento") as HTMLFormElement | null;
+  const erro = document.getElementById("erro");
+  const resultado = document.getElementById("resultado");
+  const resumo = document.getElementById("resumo");
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const dados = new FormData(form);
+    const faltando = ["nome", "whatsapp", "servico"].filter((c) => !String(dados.get(c) ?? "").trim());
+    if (faltando.length && erro) {
+      erro.textContent = "Preencha nome, WhatsApp e o que você precisa.";
+      erro.classList.remove("hidden");
+      form.querySelector<HTMLElement>(`[name="${faltando[0]}"]`)?.focus();
+      return;
+    }
+    erro?.classList.add("hidden");
+    const linhas = [
+      `Nome: ${dados.get("nome")}`,
+      `WhatsApp: ${dados.get("whatsapp")}`,
+      `Serviço: ${dados.get("servico")}`,
+      `Cidade: ${dados.get("cidade") || "não informada"}`,
+      `Área: ${dados.get("area") || "não informada"}`,
+      `Início: ${dados.get("inicio") || "não informado"}`,
+      `Detalhes: ${dados.get("mensagem") || "-"}`,
+    ];
+    if (resumo) resumo.textContent = linhas.join("\n");
+    resultado?.classList.remove("hidden");
+    resultado?.focus();
+  });
+</script>

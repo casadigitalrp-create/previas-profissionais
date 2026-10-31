@@ -1,0 +1,13 @@
+---
+import CabecalhoPagina from "../components/CabecalhoPagina.astro";
+import { url } from "../data/site";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout titulo="Página não encontrada" descricao="A página procurada não existe.">
+  <CabecalhoPagina rotulo="Erro 404" titulo="Essa página ainda está na planta." texto="O endereço não existe ou mudou de lugar.">
+    <a href={url()} class="mt-8 inline-block rounded-md bg-tijolo px-6 py-3 font-semibold text-tijolo-texto">
+      Voltar ao início
+    </a>
+  </CabecalhoPagina>
+</Layout>

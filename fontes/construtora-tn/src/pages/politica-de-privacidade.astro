@@ -1,0 +1,46 @@
+---
+import CabecalhoPagina from "../components/CabecalhoPagina.astro";
+import Layout from "../layouts/Layout.astro";
+
+// A CONFIRMAR: texto-base. Revisar com o Tiago (e, se possível, um advogado) antes da versão final.
+const secoes = [
+  {
+    titulo: "Quais dados coletamos",
+    texto:
+      "Os dados que você informa nos formulários: nome, WhatsApp, cidade, detalhes da obra e, no cadastro de vagas, informações profissionais.",
+  },
+  {
+    titulo: "Para que usamos",
+    texto:
+      "Para responder ao seu pedido de orçamento, conversar sobre a sua obra e, no caso de candidatos, para processos seletivos. Não vendemos nem compartilhamos seus dados para publicidade.",
+  },
+  {
+    titulo: "Por quanto tempo guardamos",
+    texto:
+      "Pelo tempo necessário para o atendimento e para cumprir obrigações legais. Depois disso, os dados são apagados.",
+  },
+  {
+    titulo: "Seus direitos",
+    texto:
+      "Pela Lei Geral de Proteção de Dados (LGPD), você pode pedir acesso, correção ou exclusão dos seus dados a qualquer momento pelos canais de contato.",
+  },
+];
+---
+
+<Layout titulo="Política de privacidade" descricao="Como a Construtora TN trata os dados enviados pelo site.">
+  <CabecalhoPagina
+    rotulo="Privacidade"
+    titulo="Política de privacidade"
+    texto="Texto-base da prévia. Nesta versão, os formulários não enviam nem guardam dados."
+  />
+  <section class="mx-auto max-w-3xl space-y-8 px-4 pt-14 text-lg">
+    {
+      secoes.map((s) => (
+        <div>
+          <h2 class="text-2xl font-extrabold">{s.titulo}</h2>
+          <p class="mt-2 text-suave">{s.texto}</p>
+        </div>
+      ))
+    }
+  </section>
+</Layout>

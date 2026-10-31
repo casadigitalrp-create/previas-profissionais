@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@import "@fontsource-variable/archivo";
+@import "@fontsource-variable/inter";
+
+/* Identidade: concreto, grafite e tijolo. Tema claro e escuro pela preferência do sistema. */
+:root {
+  --fundo: #f4f1ec;
+  --superficie: #ffffff;
+  --superficie-2: #ebe6de;
+  --texto: #1f2328;
+  --suave: #59606a;
+  --borda: #d9d2c7;
+  --marca: #23272e;
+  --marca-texto: #f4f1ec;
+  --tijolo: #b8491f;
+  --tijolo-texto: #ffffff;
+  --tijolo-suave: #f6e1d6;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #15171b;
+    --superficie: #1e2126;
+    --superficie-2: #272b31;
+    --texto: #ece8e1;
+    --suave: #a9adb4;
+    --borda: #363b43;
+    --marca: #0e0f12;
+    --marca-texto: #ece8e1;
+    --tijolo: #e8794a;
+    --tijolo-texto: #15171b;
+    --tijolo-suave: #3a2219;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-fundo: var(--fundo);
+  --color-superficie: var(--superficie);
+  --color-superficie-2: var(--superficie-2);
+  --color-texto: var(--texto);
+  --color-suave: var(--suave);
+  --color-borda: var(--borda);
+  --color-marca: var(--marca);
+  --color-marca-texto: var(--marca-texto);
+  --color-tijolo: var(--tijolo);
+  --color-tijolo-texto: var(--tijolo-texto);
+  --color-tijolo-suave: var(--tijolo-suave);
+  --font-display: "Archivo Variable", system-ui, sans-serif;
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--texto);
+  background: var(--fundo);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 3px solid var(--tijolo);
+  outline-offset: 3px;
+}
+
+/* Linhas de régua, lembrando prancha de projeto */
+.regua {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--texto) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--texto) 6%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.js .reveal.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

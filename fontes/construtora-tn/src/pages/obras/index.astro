@@ -1,0 +1,75 @@
+---
+import CabecalhoPagina from "../../components/CabecalhoPagina.astro";
+import Cta from "../../components/Cta.astro";
+import ObraCard from "../../components/ObraCard.astro";
+import { categorias, obras } from "../../data/obras";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout titulo="Obras" descricao="Obras residenciais, reformas, obras comerciais e regularizações da Construtora TN.">
+  <CabecalhoPagina
+    rotulo="Obras"
+    titulo="Cada obra conta como a gente trabalha."
+    texto="Veja o desafio, a solução e o resultado de cada projeto. Obras e imagens desta prévia são exemplos."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 pt-14">
+    <div class="flex flex-wrap gap-2" role="group" aria-label="Filtrar obras por tipo" id="filtros" hidden>
+      <button type="button" data-filtro="" aria-pressed="true" class="filtro">Todas</button>
+      {
+        categorias.map((c) => (
+          <button type="button" data-filtro={c} aria-pressed="false" class="filtro">
+            {c}
+          </button>
+        ))
+      }
+    </div>
+    <p class="sr-only" aria-live="polite" id="contagem"></p>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" id="lista-obras">
+      {obras.map((o) => <ObraCard obra={o} />)}
+    </div>
+  </section>
+
+  <Cta />
+</Layout>
+
+<style>
+  .filtro {
+    border: 1px solid var(--borda);
+    background: var(--superficie);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .filtro[aria-pressed="true"] {
+    background: var(--tijolo);
+    border-color: var(--tijolo);
+    color: var(--tijolo-texto);
+  }
+</style>
+
+<script>
+  // Filtro progressivo: sem JavaScript, todas as obras aparecem.
+  const grupo = document.getElementById("filtros");
+  const cartoes = document.querySelectorAll<HTMLElement>("#lista-obras [data-categoria]");
+  const contagem = document.getElementById("contagem");
+  if (grupo) {
+    grupo.hidden = false;
+    const botoes = grupo.querySelectorAll<HTMLButtonElement>("button");
+    for (const botao of botoes) {
+      botao.addEventListener("click", () => {
+        const filtro = botao.dataset.filtro ?? "";
+        for (const b of botoes) b.setAttribute("aria-pressed", String(b === botao));
+        let visiveis = 0;
+        for (const c of cartoes) {
+          const mostrar = !filtro || c.dataset.categoria === filtro;
+          c.hidden = !mostrar;
+          if (mostrar) visiveis++;
+        }
+        if (contagem) contagem.textContent = `${visiveis} obras exibidas`;
+      });
+    }
+  }
+</script>

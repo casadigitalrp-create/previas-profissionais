@@ -1,0 +1,45 @@
+---
+import CabecalhoPagina from "../../components/CabecalhoPagina.astro";
+import Cta from "../../components/Cta.astro";
+import Ilustracao from "../../components/Ilustracao.astro";
+import { servicos } from "../../data/servicos";
+import { url } from "../../data/site";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  titulo="Serviços"
+  descricao="Construção de casas, reformas e ampliações, obras comerciais, projetos, regularização, laudos e vistorias."
+>
+  <CabecalhoPagina
+    rotulo="Serviços"
+    titulo="Tudo o que a sua obra precisa, num só lugar."
+    texto="Contrate o serviço completo ou só a parte que falta. Em todos eles: orçamento claro, ART e acompanhamento."
+  />
+
+  <section class="mx-auto max-w-6xl space-y-6 px-4 pt-20">
+    {
+      servicos.map((s, i) => (
+        <article class="reveal relative grid overflow-hidden rounded-2xl border border-borda bg-superficie md:grid-cols-2">
+          <div class={i % 2 ? "md:order-last" : ""}>
+            <Ilustracao desenho={s.desenho} class="md:h-full md:object-cover" />
+          </div>
+          <div class="p-7 md:p-10">
+            <h2 class="text-2xl font-extrabold">
+              <a href={url(`servicos/${s.slug}/`)} class="after:absolute after:inset-0">
+                {s.titulo}
+              </a>
+            </h2>
+            <p class="mt-3 text-suave">{s.resumo}</p>
+            <p class="mt-4 text-sm">
+              <strong>Para quem:</strong> {s.paraQuem}
+            </p>
+            <p class="mt-6 font-semibold text-tijolo">Ver detalhes →</p>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <Cta />
+</Layout>

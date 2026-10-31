@@ -1,0 +1,171 @@
+---
+import Cta from "../components/Cta.astro";
+import Faq from "../components/Faq.astro";
+import Ilustracao from "../components/Ilustracao.astro";
+import ObraCard from "../components/ObraCard.astro";
+import { dicas } from "../data/dicas";
+import { obras } from "../data/obras";
+import { servicos } from "../data/servicos";
+import { depoimentos, dores, etapas, numeros, url } from "../data/site";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  titulo="Construção e reforma sem surpresa"
+  descricao="Construtora TN: construção de casas, reformas, obras comerciais, projetos e laudos com orçamento por etapa e acompanhamento semanal."
+>
+  <section class="regua border-b border-borda">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-widest text-tijolo">Construtora TN</p>
+        <h1 class="mt-4 text-4xl leading-[1.05] font-extrabold md:text-6xl">
+          Sua obra no prazo, no orçamento e sem surpresa.
+        </h1>
+        <p class="mt-6 max-w-lg text-lg text-suave">
+          Construímos e reformamos casas e espaços comerciais com orçamento por etapa, ART em cada serviço e
+          um relatório com fotos toda semana.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href={url("orcamento/")}
+            class="rounded-md bg-tijolo px-6 py-3 font-semibold text-tijolo-texto hover:brightness-110"
+            >Pedir orçamento</a
+          >
+          <a
+            href={url("obras/")}
+            class="rounded-md border border-borda bg-superficie px-6 py-3 font-semibold hover:border-texto"
+            >Ver obras</a
+          >
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-2xl border border-borda shadow-xl">
+        <Ilustracao desenho="casa" />
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Números" class="border-b border-borda bg-superficie">
+    <dl class="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-10 md:grid-cols-4">
+      {
+        numeros.map((n) => (
+          <div>
+            <dt class="text-sm text-suave">{n.rotulo}</dt>
+            <dd class="order-first font-display text-4xl font-extrabold text-tijolo">{n.valor}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="mx-auto max-w-6xl px-4 pb-6 text-xs text-suave">Números ilustrativos, a confirmar.</p>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pt-24" aria-labelledby="medos">
+    <div class="reveal max-w-2xl">
+      <p class="text-sm font-semibold uppercase tracking-widest text-tijolo">Por que a TN</p>
+      <h2 id="medos" class="mt-3 text-3xl font-extrabold md:text-4xl">
+        Construir dá medo. A gente sabe de cada um deles.
+      </h2>
+    </div>
+    <ul class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {
+        dores.map((d) => (
+          <li class="reveal rounded-xl border border-borda bg-superficie p-6">
+            <p class="font-display text-lg font-bold">{d.medo}</p>
+            <p class="mt-3 text-suave">{d.cuidado}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pt-24" aria-labelledby="servicos">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-widest text-tijolo">Serviços</p>
+        <h2 id="servicos" class="mt-3 text-3xl font-extrabold md:text-4xl">Do projeto à entrega das chaves</h2>
+      </div>
+      <a href={url("servicos/")} class="font-semibold text-tijolo hover:underline">Todos os serviços →</a>
+    </div>
+    <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        servicos.map((s) => (
+          <li class="reveal relative rounded-xl border border-borda bg-superficie p-6 transition hover:border-tijolo">
+            <h3 class="text-xl font-bold">
+              <a href={url(`servicos/${s.slug}/`)} class="after:absolute after:inset-0">
+                {s.titulo}
+              </a>
+            </h3>
+            <p class="mt-2 text-suave">{s.resumo}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pt-24" aria-labelledby="como">
+    <div class="reveal max-w-2xl">
+      <p class="text-sm font-semibold uppercase tracking-widest text-tijolo">Como funciona</p>
+      <h2 id="como" class="mt-3 text-3xl font-extrabold md:text-4xl">Cinco etapas, nenhuma surpresa</h2>
+    </div>
+    <ol class="mt-10 grid gap-5 md:grid-cols-5">
+      {
+        etapas.map((e, i) => (
+          <li class="reveal rounded-xl border-t-4 border-tijolo bg-superficie p-5">
+            <p class="font-display text-3xl font-extrabold text-tijolo">{String(i + 1).padStart(2, "0")}</p>
+            <h3 class="mt-2 font-bold">{e.titulo}</h3>
+            <p class="mt-2 text-sm text-suave">{e.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pt-24" aria-labelledby="obras">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-widest text-tijolo">Obras</p>
+        <h2 id="obras" class="mt-3 text-3xl font-extrabold md:text-4xl">Alguns trabalhos</h2>
+      </div>
+      <a href={url("obras/")} class="font-semibold text-tijolo hover:underline">Ver todas as obras →</a>
+    </div>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {obras.slice(0, 3).map((o) => <ObraCard obra={o} />)}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pt-24" aria-labelledby="depoimentos">
+    <h2 id="depoimentos" class="reveal text-3xl font-extrabold md:text-4xl">Quem já construiu com a TN</h2>
+    <ul class="mt-10 grid gap-5 md:grid-cols-3">
+      {
+        depoimentos.map((d) => (
+          <li class="reveal rounded-xl border border-borda bg-superficie p-6">
+            <blockquote class="text-lg">“{d.texto}”</blockquote>
+            <p class="mt-4 font-semibold">{d.nome}</p>
+            <p class="text-sm text-suave">{d.papel}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mx-auto grid max-w-6xl gap-10 px-4 pt-24 lg:grid-cols-[1fr_1.4fr]" aria-labelledby="duvidas">
+    <div class="reveal">
+      <p class="text-sm font-semibold uppercase tracking-widest text-tijolo">Dúvidas</p>
+      <h2 id="duvidas" class="mt-3 text-3xl font-extrabold md:text-4xl">Perguntas frequentes</h2>
+      <p class="mt-4 text-suave">Quer ir mais fundo? Veja as dicas:</p>
+      <ul class="mt-3 space-y-2">
+        {
+          dicas.map((d) => (
+            <li>
+              <a href={url(`dicas/${d.slug}/`)} class="font-medium text-tijolo hover:underline">
+                {d.titulo}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="reveal"><Faq /></div>
+  </section>
+
+  <Cta />
+</Layout>

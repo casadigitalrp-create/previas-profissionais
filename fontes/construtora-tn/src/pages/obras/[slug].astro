@@ -1,0 +1,86 @@
+---
+import CabecalhoPagina from "../../components/CabecalhoPagina.astro";
+import Cta from "../../components/Cta.astro";
+import Ilustracao from "../../components/Ilustracao.astro";
+import ObraCard from "../../components/ObraCard.astro";
+import { type Obra, obras } from "../../data/obras";
+import { url } from "../../data/site";
+import Layout from "../../layouts/Layout.astro";
+
+export function getStaticPaths() {
+  return obras.map((obra) => ({ params: { slug: obra.slug }, props: { obra } }));
+}
+
+interface Props {
+  obra: Obra;
+}
+
+const { obra } = Astro.props;
+const outras = obras
+  .filter((o) => o.slug !== obra.slug && o.categoria === obra.categoria)
+  .slice(0, 3);
+const ficha = [
+  { rotulo: "Tipo", valor: obra.categoria },
+  { rotulo: "Local", valor: obra.local },
+  { rotulo: "Área", valor: obra.area },
+  { rotulo: "Prazo", valor: obra.prazo },
+];
+const historia = [
+  { titulo: "O desafio", texto: obra.desafio },
+  { titulo: "Como resolvemos", texto: obra.solucao },
+  { titulo: "O resultado", texto: obra.resultado },
+];
+---
+
+<Layout titulo={obra.titulo} descricao={obra.resumo}>
+  <CabecalhoPagina rotulo={obra.categoria} titulo={obra.titulo} texto={obra.resumo}>
+    <nav aria-label="Caminho" class="mt-6 text-sm text-suave">
+      <a href={url("obras/")} class="hover:underline">Obras</a> / <span>{obra.titulo}</span>
+    </nav>
+  </CabecalhoPagina>
+
+  <section class="mx-auto grid max-w-6xl gap-10 px-4 pt-16 lg:grid-cols-[1.5fr_1fr]">
+    <div class="overflow-hidden rounded-2xl border border-borda">
+      <Ilustracao desenho={obra.desenho} />
+      <p class="bg-superficie px-4 py-2 text-xs text-suave">Ilustração provisória. Na versão final: galeria de fotos da obra.</p>
+    </div>
+    <dl class="grid h-fit grid-cols-2 gap-4 rounded-2xl border border-borda bg-superficie p-6">
+      {
+        ficha.map((f) => (
+          <div>
+            <dt class="text-sm text-suave">{f.rotulo}</dt>
+            <dd class="font-display text-lg font-bold">{f.valor}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="mx-auto grid max-w-6xl gap-5 px-4 pt-14 md:grid-cols-3">
+    {
+      historia.map((h) => (
+        <div class="reveal rounded-xl border-t-4 border-tijolo bg-superficie p-6">
+          <h2 class="text-xl font-bold">{h.titulo}</h2>
+          <p class="mt-2 text-suave">{h.texto}</p>
+        </div>
+      ))
+    }
+  </section>
+
+  {
+    outras.length > 0 && (
+      <section class="mx-auto max-w-6xl px-4 pt-20" aria-labelledby="outras">
+        <h2 id="outras" class="reveal text-2xl font-extrabold">
+          Outras obras de {obra.categoria.toLowerCase()}
+        </h2>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {outras.map((o) => (
+            <ObraCard obra={o} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <Cta titulo="Quer uma obra assim?" />
+</Layout>

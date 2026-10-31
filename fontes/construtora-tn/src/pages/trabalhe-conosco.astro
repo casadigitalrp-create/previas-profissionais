@@ -1,0 +1,84 @@
+---
+import CabecalhoPagina from "../components/CabecalhoPagina.astro";
+import { url } from "../data/site";
+import Layout from "../layouts/Layout.astro";
+
+// SIMULADO: vagas de exemplo.
+const vagas = [
+  {
+    cargo: "Mestre de obras",
+    tipo: "CLT",
+    texto: "Experiência em obras residenciais e liderança de equipe.",
+  },
+  { cargo: "Pedreiro", tipo: "CLT", texto: "Alvenaria, reboco e assentamento de revestimentos." },
+  {
+    cargo: "Estágio em Engenharia Civil",
+    tipo: "Estágio",
+    texto: "Acompanhamento de obra e apoio no planejamento.",
+  },
+];
+const campo =
+  "mt-1.5 w-full rounded-md border border-borda bg-fundo px-3 py-2.5 text-texto focus:border-tijolo";
+---
+
+<Layout titulo="Trabalhe conosco" descricao="Vagas e banco de talentos da Construtora TN.">
+  <CabecalhoPagina
+    rotulo="Trabalhe conosco"
+    titulo="Obra boa começa com gente boa."
+    texto="Valorizamos quem trabalha com capricho, segurança e respeito ao cliente."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 pt-14" aria-labelledby="vagas">
+    <h2 id="vagas" class="text-2xl font-extrabold">Vagas abertas</h2>
+    <p class="mt-1 text-sm text-suave">Vagas ilustrativas.</p>
+    <ul class="mt-6 grid gap-5 md:grid-cols-3">
+      {
+        vagas.map((v) => (
+          <li class="rounded-xl border border-borda bg-superficie p-6">
+            <p class="text-xs font-semibold uppercase tracking-widest text-tijolo">{v.tipo}</p>
+            <h3 class="mt-2 text-lg font-bold">{v.cargo}</h3>
+            <p class="mt-2 text-suave">{v.texto}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 pt-16" aria-labelledby="cadastro">
+    <h2 id="cadastro" class="text-2xl font-extrabold">Cadastre-se</h2>
+    <form id="form-vagas" class="mt-6 space-y-5 rounded-2xl border border-borda bg-superficie p-6">
+      <p class="rounded-md bg-tijolo-suave p-3 text-sm">
+        <strong>Formulário de demonstração:</strong> nesta prévia, nenhum dado é enviado ou guardado.
+      </p>
+      <label class="block font-medium">Nome <input name="nome" autocomplete="name" class={campo} /></label>
+      <label class="block font-medium">
+        Função de interesse
+        <select name="funcao" class={campo}>
+          {vagas.map((v) => <option>{v.cargo}</option>)}
+          <option>Outra</option>
+        </select>
+      </label>
+      <label class="block font-medium">
+        Experiência
+        <textarea name="experiencia" rows="4" class={campo}></textarea>
+      </label>
+      <p class="text-sm text-suave">
+        Ao enviar, você concorda com o uso dos dados para processos seletivos, conforme a
+        <a href={url("politica-de-privacidade/")} class="text-tijolo underline">política de privacidade</a>.
+      </p>
+      <button type="submit" class="rounded-md bg-tijolo px-6 py-3 font-semibold text-tijolo-texto hover:brightness-110">
+        Enviar cadastro
+      </button>
+      <p role="status" class="font-medium"></p>
+    </form>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById("form-vagas");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const status = form.querySelector('[role="status"]');
+    if (status) status.textContent = "Demonstração: nenhum dado foi enviado.";
+  });
+</script>

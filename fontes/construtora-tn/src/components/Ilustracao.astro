@@ -1,0 +1,105 @@
+---
+// Ilustrações em traço, SIMULADAS: substituir por fotos reais das obras na versão final.
+import type { Desenho } from "../data/servicos";
+
+interface Props {
+  desenho: Desenho;
+  class?: string;
+}
+
+const { desenho, class: classe = "" } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 400 260"
+  class={`h-auto w-full ${classe}`}
+  aria-hidden="true"
+  fill="none"
+  stroke="var(--texto)"
+  stroke-width="2.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <rect x="0" y="0" width="400" height="260" fill="var(--superficie-2)" stroke="none"></rect>
+  <line x1="20" y1="222" x2="380" y2="222"></line>
+  {
+    desenho === "casa" && (
+      <g>
+        <rect x="110" y="120" width="180" height="102" fill="var(--superficie)" />
+        <path d="M95 124 200 56l105 68" fill="var(--tijolo-suave)" />
+        <path d="M95 124 200 56l105 68" stroke="var(--tijolo)" stroke-width="5" />
+        <rect x="186" y="164" width="30" height="58" fill="var(--tijolo)" stroke="none" />
+        <rect x="130" y="146" width="34" height="30" />
+        <rect x="238" y="146" width="34" height="30" />
+        <line x1="147" y1="146" x2="147" y2="176" />
+        <line x1="255" y1="146" x2="255" y2="176" />
+        <path d="M40 222c10-26 26-26 34 0M330 222c8-20 22-20 30 0" stroke="var(--suave)" />
+      </g>
+    )
+  }
+  {
+    desenho === "sobrado" && (
+      <g>
+        <rect x="120" y="70" width="160" height="152" fill="var(--superficie)" />
+        <line x1="112" y1="70" x2="288" y2="70" stroke="var(--tijolo)" stroke-width="6" />
+        <line x1="120" y1="146" x2="280" y2="146" />
+        <rect x="140" y="90" width="50" height="36" />
+        <rect x="210" y="90" width="50" height="36" />
+        <rect x="140" y="166" width="50" height="34" />
+        <rect x="222" y="166" width="28" height="56" fill="var(--tijolo)" stroke="none" />
+        <path d="M280 110h40v112" stroke="var(--suave)" stroke-dasharray="6 8" />
+      </g>
+    )
+  }
+  {
+    desenho === "comercial" && (
+      <g>
+        <rect x="70" y="80" width="260" height="142" fill="var(--superficie)" />
+        <path d="M60 112h280l-12 22H72z" fill="var(--tijolo)" stroke="var(--tijolo)" />
+        <path d="M100 112v22M140 112v22M180 112v22M220 112v22M260 112v22M300 112v22" stroke="var(--tijolo-texto)" />
+        <rect x="90" y="150" width="140" height="72" />
+        <line x1="160" y1="150" x2="160" y2="222" />
+        <rect x="250" y="150" width="56" height="72" fill="var(--superficie-2)" />
+        <rect x="150" y="90" width="100" height="14" fill="var(--marca)" stroke="none" />
+      </g>
+    )
+  }
+  {
+    desenho === "reforma" && (
+      <g>
+        <rect x="80" y="104" width="170" height="118" fill="var(--superficie)" />
+        <path d="M68 108 165 50l97 58" />
+        <rect x="104" y="136" width="40" height="34" />
+        <rect x="180" y="160" width="32" height="62" />
+        <g stroke="var(--tijolo)" stroke-width="3">
+          <path d="M262 222V80M330 222V80M262 80h68M262 128h68M262 176h68M262 128l68 48M330 128l-68 48" />
+        </g>
+        <path d="M300 222 340 60M318 222l40-162M304 206h32M308 190h32M313 170h32M318 150h32M323 130h32" stroke="var(--suave)" />
+      </g>
+    )
+  }
+  {
+    desenho === "planta" && (
+      <g>
+        <rect x="80" y="44" width="240" height="160" fill="var(--superficie)" stroke-width="5" />
+        <path d="M80 124h110M190 44v160M190 104h130M250 104v100" stroke-width="3.5" />
+        <path d="M150 124a26 26 0 0 1 26-26" stroke="var(--suave)" />
+        <path d="M80 222h240M80 216v12M320 216v12" stroke="var(--tijolo)" />
+        <path d="M338 44v160M332 44h12M332 204h12" stroke="var(--tijolo)" />
+        <circle cx="132" cy="84" r="5" fill="var(--tijolo)" stroke="none" />
+      </g>
+    )
+  }
+  {
+    desenho === "laudo" && (
+      <g>
+        <rect x="60" y="60" width="190" height="162" fill="var(--superficie)" />
+        <path d="M60 100h190M60 140h190M60 180h190M110 60v40M170 100v40M120 140v40M200 180v42" stroke="var(--suave)" />
+        <path d="M150 64l-14 30 18 22-16 34 12 26" stroke="var(--tijolo)" stroke-width="3.5" />
+        <circle cx="270" cy="128" r="44" fill="var(--superficie)" stroke-width="5" />
+        <path d="M302 160l42 42" stroke-width="8" />
+        <path d="M262 108l-8 18 10 12-8 18" stroke="var(--tijolo)" stroke-width="3" />
+      </g>
+    )
+  }
+</svg>

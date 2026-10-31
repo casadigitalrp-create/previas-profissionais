@@ -1,0 +1,27 @@
+---
+import { url } from "../data/site";
+
+interface Props {
+  titulo?: string;
+  texto?: string;
+}
+
+const {
+  titulo = "Vamos tirar a sua obra do papel?",
+  texto = "Conte o que você quer construir ou reformar. A gente responde com os próximos passos, sem compromisso.",
+} = Astro.props;
+---
+
+<section class="mx-auto max-w-6xl px-4 pt-24">
+  <div class="reveal regua rounded-2xl bg-marca p-8 text-marca-texto md:flex md:items-center md:justify-between md:gap-10 md:p-12">
+    <div>
+      <h2 class="text-3xl font-extrabold">{titulo}</h2>
+      <p class="mt-3 max-w-xl opacity-85">{texto}</p>
+    </div>
+    <a
+      href={url("orcamento/")}
+      class="mt-6 inline-block shrink-0 rounded-md bg-tijolo px-6 py-3 font-semibold text-tijolo-texto hover:brightness-110 md:mt-0"
+      >Pedir orçamento</a
+    >
+  </div>
+</section>
