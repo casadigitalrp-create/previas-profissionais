@@ -1,6 +1,6 @@
-# Galeria de prévias da CasaDigitalRP
+# Catálogo de modelos da CasaDigitalRP
 
-Site estático de apresentação de dez propostas visuais. Seis modelos são publicados neste repositório; quatro modelos anteriores são vinculados na página inicial.
+A página inicial (`index.html`) apresenta os modelos por estilo e código (M01 a M11), sem nomes de clientes, com filtros por segmento e formato e botão de WhatsApp com o modelo escolhido. Site estático de apresentação de dez propostas visuais. Seis modelos são publicados neste repositório; quatro modelos anteriores são vinculados na página inicial.
 
 ## Novos modelos
 
