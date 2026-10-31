@@ -51,6 +51,8 @@
       .ver { border: 1px solid #ffffff40; }
       .quero { background: #1f8f4e; color: #fff; }
       .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .para { color: #b8b0a8; font-size: .86rem; margin: -6px 0 18px; }
+      .para strong { color: #f5f5f5; font-weight: 600; }
       .vazio { color: #d6cfc8; padding: 20px 0 60px; }
       footer { padding: 26px 0 44px; border-top: 1px solid #ffffff20; color: #b8b0a8; font-size: .9rem; line-height: 1.6; }
       @media (max-width: 860px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .passos { grid-template-columns: 1fr; } }
@@ -87,7 +89,8 @@
           <button type="button" data-valor="" aria-pressed="true">Todos</button>
           <button type="button" data-valor="unica" aria-pressed="false">Página única</button>
           <button type="button" data-valor="multi" aria-pressed="false">Várias páginas</button>
-          <button type="button" data-valor="catalogo" aria-pressed="false">Catálogo</button>
+          <button type="button" data-valor="catalogo" aria-pressed="false">Catálogo e portfólio</button>
+          <button type="button" data-valor="pedido" aria-pressed="false">Pedido online</button>
         </div>
       </div>
       <p class="count" id="contagem" aria-live="polite">12 modelos</p>
@@ -95,86 +98,98 @@
       <div class="grid" id="modelos">
         <article class="card" data-segmento="construcao" data-formato="multi">
           <div class="topo"><span class="codigo">M01</span><span class="cores" aria-hidden="true"><i style="background:#23272e"></i><i style="background:#b8491f"></i><i style="background:#f4f1ec"></i></span></div>
-          <h3>Canteiro</h3>
-          <p>Site completo com serviços, portfólio filtrável, artigos, orçamento e vagas. Para empresas com muito a mostrar.</p>
-          <div class="tags"><span class="tag">23 páginas</span><span class="tag">Claro e escuro</span><span class="tag">Construção · Engenharia</span></div>
-          <div class="acoes"><a class="ver" href="construtora-tn/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M01 Canteiro" href="https://wa.me/5516993756290">Quero este</a></div>
+          <h3>Alicerce</h3>
+          <p>Sólido e organizado, em grafite e tijolo. Para quem precisa mostrar muitos serviços e trabalhos com credibilidade.</p>
+          <div class="tags"><span class="tag">Várias páginas</span><span class="tag">Portfólio filtrável</span></div>
+          <p class="para"><strong>Indicado para:</strong> Construtoras, engenharia, serviços técnicos</p>
+          <div class="acoes"><a class="ver" href="construtora-tn/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M01 Alicerce" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
         <article class="card" data-segmento="saude" data-formato="unica">
           <div class="topo"><span class="codigo">M02</span><span class="cores" aria-hidden="true"><i style="background:#6f8f72"></i><i style="background:#c46b4a"></i><i style="background:#f5f7f2"></i></span></div>
           <h3>Sálvia</h3>
-          <p>Acolhedor, em verde e terracota. Transmite calma para quem tem receio de consulta.</p>
-          <div class="tags"><span class="tag">Página única</span><span class="tag">Claro e escuro</span><span class="tag">Saúde · Bem-estar</span></div>
+          <p>Acolhedor, em verde e terracota. Para quem precisa tranquilizar o cliente antes do primeiro contato.</p>
+          <div class="tags"><span class="tag">Página única</span><span class="tag">Claro e escuro</span></div>
+          <p class="para"><strong>Indicado para:</strong> Saúde, terapias, bem-estar</p>
           <div class="acoes"><a class="ver" href="cristhian-v1/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M02 Sálvia" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
         <article class="card" data-segmento="saude" data-formato="unica">
           <div class="topo"><span class="codigo">M03</span><span class="cores" aria-hidden="true"><i style="background:#a9c4b4"></i><i style="background:#e8d9c4"></i><i style="background:#fbfcf9"></i></span></div>
           <h3>Brisa</h3>
-          <p>Claro e suave, com carrossel ilustrado na abertura. Leve para qualquer profissional de atendimento.</p>
-          <div class="tags"><span class="tag">Página única</span><span class="tag">Carrossel</span><span class="tag">Saúde · Serviços</span></div>
+          <p>Leve e claro, com carrossel na abertura. Para quem quer passar delicadeza e cuidado.</p>
+          <div class="tags"><span class="tag">Página única</span><span class="tag">Carrossel</span></div>
+          <p class="para"><strong>Indicado para:</strong> Saúde, estética, atendimento</p>
           <div class="acoes"><a class="ver" href="cristhian-v2/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M03 Brisa" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
         <article class="card" data-segmento="saude criativo" data-formato="unica">
           <div class="topo"><span class="codigo">M04</span><span class="cores" aria-hidden="true"><i style="background:#ffd23f"></i><i style="background:#1d1d1d"></i><i style="background:#ff5a5f"></i></span></div>
-          <h3>Pôster</h3>
-          <p>Cores vivas, bordas fortes e cartas interativas. Para quem quer ser lembrado de longe.</p>
-          <div class="tags"><span class="tag">Página única</span><span class="tag">Interativo</span><span class="tag">Saúde · Marcas jovens</span></div>
-          <div class="acoes"><a class="ver" href="cristhian-v3/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M04 Pôster" href="https://wa.me/5516993756290">Quero este</a></div>
+          <h3>Pop</h3>
+          <p>Cores vivas e bordas fortes, com cartas interativas. Para quem quer ser lembrado de longe.</p>
+          <div class="tags"><span class="tag">Página única</span><span class="tag">Interativo</span></div>
+          <p class="para"><strong>Indicado para:</strong> Marcas jovens, saúde, eventos</p>
+          <div class="acoes"><a class="ver" href="cristhian-v3/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M04 Pop" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
         <article class="card" data-segmento="saude juridico" data-formato="unica">
           <div class="topo"><span class="codigo">M05</span><span class="cores" aria-hidden="true"><i style="background:#3f4ab8"></i><i style="background:#2b2b2b"></i><i style="background:#fbfbf9"></i></span></div>
-          <h3>Linha fina</h3>
-          <p>Moderno e minimalista, com linhas leves, muito respiro e detalhe em índigo.</p>
-          <div class="tags"><span class="tag">Página única</span><span class="tag">Minimalista</span><span class="tag">Saúde · Consultoria</span></div>
-          <div class="acoes"><a class="ver" href="cristhian-v4/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M05 Linha fina" href="https://wa.me/5516993756290">Quero este</a></div>
+          <h3>Traço</h3>
+          <p>Minimalista, com linhas finas, muito respiro e detalhe em índigo. Para quem vende precisão.</p>
+          <div class="tags"><span class="tag">Página única</span><span class="tag">Minimalista</span></div>
+          <p class="para"><strong>Indicado para:</strong> Consultorias, saúde, profissionais liberais</p>
+          <div class="acoes"><a class="ver" href="cristhian-v4/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M05 Traço" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
         <article class="card" data-segmento="juridico" data-formato="unica">
           <div class="topo"><span class="codigo">M06</span><span class="cores" aria-hidden="true"><i style="background:#0c1624"></i><i style="background:#c9a45c"></i><i style="background:#f4efe4"></i></span></div>
-          <h3>Noite e ouro</h3>
-          <p>Azul-noite, dourado e marfim com linguagem direta. Sério sem ser distante.</p>
-          <div class="tags"><span class="tag">Página única</span><span class="tag">Sóbrio</span><span class="tag">Advocacia · Contabilidade</span></div>
-          <div class="acoes"><a class="ver" href="tiago-jacinto/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M06 Noite e ouro" href="https://wa.me/5516993756290">Quero este</a></div>
+          <h3>Safira</h3>
+          <p>Azul profundo, dourado e marfim. Sério sem ser distante, para quem trabalha com confiança.</p>
+          <div class="tags"><span class="tag">Página única</span><span class="tag">Sóbrio</span></div>
+          <p class="para"><strong>Indicado para:</strong> Advocacia, contabilidade, finanças</p>
+          <div class="acoes"><a class="ver" href="tiago-jacinto/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M06 Safira" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
         <article class="card" data-segmento="saude" data-formato="unica">
           <div class="topo"><span class="codigo">M07</span><span class="cores" aria-hidden="true"><i style="background:#f3f0ea"></i><i style="background:#b8963e"></i><i style="background:#2e2a24"></i></span></div>
           <h3>Mármore</h3>
-          <p>Mármore claro, dourado e referências clássicas, com ferramenta que prepara a consulta.</p>
-          <div class="tags"><span class="tag">Página única</span><span class="tag">Ferramenta interativa</span><span class="tag">Saúde · Estética</span></div>
+          <p>Clássico, em mármore claro e dourado, com ferramenta que prepara o atendimento.</p>
+          <div class="tags"><span class="tag">Página única</span><span class="tag">Ferramenta interativa</span></div>
+          <p class="para"><strong>Indicado para:</strong> Saúde, estética, clínicas</p>
           <div class="acoes"><a class="ver" href="https://casadigitalrp-create.github.io/everton-castro-previa/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M07 Mármore" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
         <article class="card" data-segmento="construcao" data-formato="unica">
           <div class="topo"><span class="codigo">M08</span><span class="cores" aria-hidden="true"><i style="background:#0b1f3a"></i><i style="background:#f28c28"></i><i style="background:#f4f5f7"></i></span></div>
-          <h3>Planta</h3>
-          <p>Marinho e laranja de obra sobre textura de planta técnica, com linha do tempo da trajetória.</p>
-          <div class="tags"><span class="tag">Página única</span><span class="tag">Linha do tempo</span><span class="tag">Engenharia · Arquitetura</span></div>
-          <div class="acoes"><a class="ver" href="https://casadigitalrp-create.github.io/TiagoNascimento-Previa/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M08 Planta" href="https://wa.me/5516993756290">Quero este</a></div>
+          <h3>Esquadro</h3>
+          <p>Marinho e laranja sobre textura de projeto técnico, com linha do tempo da trajetória.</p>
+          <div class="tags"><span class="tag">Página única</span><span class="tag">Linha do tempo</span></div>
+          <p class="para"><strong>Indicado para:</strong> Engenharia, arquitetura, autônomos</p>
+          <div class="acoes"><a class="ver" href="https://casadigitalrp-create.github.io/TiagoNascimento-Previa/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M08 Esquadro" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
         <article class="card" data-segmento="construcao" data-formato="unica">
           <div class="topo"><span class="codigo">M09</span><span class="cores" aria-hidden="true"><i style="background:#16396b"></i><i style="background:#f28c28"></i><i style="background:#e3e6ec"></i></span></div>
-          <h3>Planta 2</h3>
-          <p>Variação do Planta com outra organização de imagens e seções.</p>
-          <div class="tags"><span class="tag">Página única</span><span class="tag">Engenharia · Serviços técnicos</span></div>
-          <div class="acoes"><a class="ver" href="https://casadigitalrp-create.github.io/TiagoNascimento-Previa/v2/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M09 Planta 2" href="https://wa.me/5516993756290">Quero este</a></div>
+          <h3>Compasso</h3>
+          <p>Técnico e direto, com imagens em destaque e seções enxutas.</p>
+          <div class="tags"><span class="tag">Página única</span><span class="tag">Imagens em destaque</span></div>
+          <p class="para"><strong>Indicado para:</strong> Engenharia, manutenção, serviços técnicos</p>
+          <div class="acoes"><a class="ver" href="https://casadigitalrp-create.github.io/TiagoNascimento-Previa/v2/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M09 Compasso" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
         <article class="card" data-segmento="comercio criativo" data-formato="catalogo">
           <div class="topo"><span class="codigo">M10</span><span class="cores" aria-hidden="true"><i style="background:#e9d5c8"></i><i style="background:#8a5a44"></i><i style="background:#fffaf5"></i></span></div>
-          <h3>Vitrine</h3>
-          <p>Visual artesanal com coleções e vitrine filtrável. Para quem vende peças e produtos.</p>
-          <div class="tags"><span class="tag">Catálogo</span><span class="tag">Filtros</span><span class="tag">Ateliê · Loja</span></div>
-          <div class="acoes"><a class="ver" href="https://casadigitalrp-create.github.io/AtelieAragao/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M10 Vitrine" href="https://wa.me/5516993756290">Quero este</a></div>
+          <h3>Linho</h3>
+          <p>Artesanal e caloroso, com coleções e vitrine filtrável. Para quem vende peças e produtos.</p>
+          <div class="tags"><span class="tag">Catálogo</span><span class="tag">Vitrine filtrável</span></div>
+          <p class="para"><strong>Indicado para:</strong> Ateliês, lojas, artesanato</p>
+          <div class="acoes"><a class="ver" href="https://casadigitalrp-create.github.io/AtelieAragao/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M10 Linho" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
         <article class="card" data-segmento="criativo" data-formato="catalogo">
           <div class="topo"><span class="codigo">M11</span><span class="cores" aria-hidden="true"><i style="background:#0a0a0a"></i><i style="background:#e63946"></i><i style="background:#f1f1f1"></i></span></div>
-          <h3>Cinema</h3>
-          <p>Visual cinematográfico com página de trabalhos. Para quem vende imagem: vídeo, foto e design.</p>
-          <div class="tags"><span class="tag">Portfólio</span><span class="tag">2 páginas</span><span class="tag">Produtora · Fotografia</span></div>
-          <div class="acoes"><a class="ver" href="camaleao-produtora/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M11 Cinema" href="https://wa.me/5516993756290">Quero este</a></div>
+          <h3>Claquete</h3>
+          <p>Cinematográfico, com página de trabalhos. Para quem vende imagem e quer impacto.</p>
+          <div class="tags"><span class="tag">Portfólio</span><span class="tag">Galeria de trabalhos</span></div>
+          <p class="para"><strong>Indicado para:</strong> Produtoras, fotografia, design</p>
+          <div class="acoes"><a class="ver" href="camaleao-produtora/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M11 Claquete" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
-        <article class="card" data-segmento="comercio" data-formato="multi">
+        <article class="card" data-segmento="comercio" data-formato="pedido">
           <div class="topo"><span class="codigo">M12</span><span class="cores" aria-hidden="true"><i style="background:#c8261b"></i><i style="background:#f6b81a"></i><i style="background:#fff7e8"></i></span></div>
           <h3>Balcão</h3>
-          <p>Cardápio com sacola, adicionais e checkout sem cadastro. O pedido sai pronto para a automação no n8n.</p>
-          <div class="tags"><span class="tag">Pedido online</span><span class="tag">Pronto para n8n</span><span class="tag">Lanchonete · Delivery</span></div>
+          <p>Apetitoso, com cardápio, sacola e checkout. O pedido sai pronto para a automação no n8n.</p>
+          <div class="tags"><span class="tag">Pedido online</span><span class="tag">Pronto para n8n</span></div>
+          <p class="para"><strong>Indicado para:</strong> Lanchonetes, delivery, restaurantes</p>
           <div class="acoes"><a class="ver" href="lanchonete/" target="_blank" rel="noopener">Ver modelo<span class="sr"> (abre em nova aba)</span></a><a class="quero" data-modelo="M12 Balcão" href="https://wa.me/5516993756290">Quero este</a></div>
         </article>
       </div>
