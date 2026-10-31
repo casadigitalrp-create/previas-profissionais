@@ -1,0 +1,122 @@
+---
+// Janela para escolher quantidade, adicionais e observação antes de colocar na sacola.
+import { adicionais, produtos } from "../data/cardapio";
+
+const dados = JSON.stringify({ produtos, adicionais });
+---
+
+<dialog
+  id="dialogo-produto"
+  aria-labelledby="dp-titulo"
+  class="m-auto w-[min(32rem,calc(100%-2rem))] rounded-2xl border border-borda bg-superficie p-0 text-texto"
+>
+  <form method="dialog" class="p-6" id="dp-form">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <h2 id="dp-titulo" class="text-2xl font-extrabold"></h2>
+        <p id="dp-descricao" class="mt-1 text-sm text-suave"></p>
+      </div>
+      <button type="button" data-fechar class="grid size-9 shrink-0 place-items-center rounded-full border border-borda" aria-label="Fechar">
+        ✕
+      </button>
+    </div>
+
+    <fieldset id="dp-adicionais" class="mt-5">
+      <legend class="font-semibold">Adicionais</legend>
+      <div class="mt-2 space-y-2" id="dp-lista"></div>
+    </fieldset>
+
+    <label class="mt-5 block font-semibold">
+      Observação
+      <input
+        id="dp-obs"
+        maxlength="120"
+        placeholder="Ex.: sem cebola, ponto da carne bem passado"
+        class="mt-1.5 w-full rounded-lg border border-borda bg-fundo px-3 py-2.5 font-normal"
+      />
+    </label>
+
+    <div class="mt-6 flex items-center justify-between gap-3">
+      <div class="flex items-center rounded-full border border-borda" role="group" aria-label="Quantidade">
+        <button type="button" data-qtd="-1" class="size-10 text-xl" aria-label="Diminuir">−</button>
+        <output id="dp-qtd" class="w-8 text-center font-bold" aria-live="polite">1</output>
+        <button type="button" data-qtd="1" class="size-10 text-xl" aria-label="Aumentar">+</button>
+      </div>
+      <button type="submit" class="flex-1 rounded-full bg-ketchup px-5 py-3 font-semibold text-ketchup-texto hover:brightness-110">
+        Adicionar · <span id="dp-total"></span>
+      </button>
+    </div>
+  </form>
+</dialog>
+
+<script is:inline type="application/json" id="dados-cardapio" set:html={dados} />
+
+<script>
+  import type { Adicional, Produto } from "../data/cardapio";
+  import { adicionar } from "../lib/carrinho";
+  import { precoUnitario, reais } from "../lib/pedido";
+
+  const { produtos, adicionais } = JSON.parse(
+    document.getElementById("dados-cardapio")?.textContent ?? "{}",
+  ) as { produtos: Produto[]; adicionais: Adicional[] };
+  const dialogo = document.getElementById("dialogo-produto") as HTMLDialogElement;
+  const $ = (id: string) => document.getElementById(id) as HTMLElement;
+  const obs = $("dp-obs") as HTMLInputElement;
+  let atual: Produto | undefined;
+  let qtd = 1;
+
+  const escolhidos = () =>
+    [...dialogo.querySelectorAll<HTMLInputElement>("#dp-lista input:checked")].map((i) => i.value);
+  const recalcular = () => {
+    if (!atual) return;
+    $("dp-qtd").textContent = String(qtd);
+    $("dp-total").textContent = reais(precoUnitario({ produtoId: atual.id, adicionais: escolhidos() }) * qtd);
+  };
+
+  const aviso = (texto: string) => {
+    const el = $("aviso");
+    el.textContent = texto;
+    el.classList.remove("translate-y-24", "opacity-0");
+    setTimeout(() => el.classList.add("translate-y-24", "opacity-0"), 2200);
+  };
+
+  document.addEventListener("click", (e) => {
+    const botao = (e.target as HTMLElement).closest<HTMLElement>("[data-adicionar]");
+    if (!botao) return;
+    atual = produtos.find((p) => p.id === botao.dataset.adicionar);
+    if (!atual) return;
+    qtd = 1;
+    obs.value = "";
+    $("dp-titulo").textContent = atual.nome;
+    $("dp-descricao").textContent = atual.descricao;
+    const lista = $("dp-lista");
+    lista.replaceChildren();
+    const ids = atual.adicionais ?? [];
+    $("dp-adicionais").hidden = ids.length === 0;
+    for (const a of adicionais.filter((x) => ids.includes(x.id))) {
+      const label = document.createElement("label");
+      label.className = "flex items-center justify-between gap-3 rounded-lg border border-borda px-3 py-2";
+      label.innerHTML = `<span class="flex items-center gap-2"><input type="checkbox" value="${a.id}" class="size-4 accent-[var(--ketchup)]"> ${a.nome}</span><span class="text-sm text-suave">+ ${reais(a.preco)}</span>`;
+      lista.append(label);
+    }
+    recalcular();
+    dialogo.showModal();
+  });
+
+  dialogo.addEventListener("change", recalcular);
+  for (const b of dialogo.querySelectorAll<HTMLElement>("[data-qtd]")) {
+    b.addEventListener("click", () => {
+      qtd = Math.max(1, Math.min(20, qtd + Number(b.dataset.qtd)));
+      recalcular();
+    });
+  }
+  dialogo.querySelector("[data-fechar]")?.addEventListener("click", () => dialogo.close());
+  dialogo.addEventListener("click", (e) => {
+    if (e.target === dialogo) dialogo.close();
+  });
+  $("dp-form").addEventListener("submit", () => {
+    if (!atual) return;
+    adicionar(atual.id, qtd, escolhidos(), obs.value);
+    aviso(`${qtd}x ${atual.nome} na sacola ✓`);
+  });
+</script>

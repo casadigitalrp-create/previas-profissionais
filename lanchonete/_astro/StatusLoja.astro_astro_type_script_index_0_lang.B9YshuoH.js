@@ -1,0 +1,1 @@
+import{a as e}from"./pedido.BNkfAFwb.js";var t=e();for(let e of document.querySelectorAll(`[data-status-loja]`)){let n=e.querySelector(`[data-texto]`),r=e.querySelector(`[data-ponto]`);n&&(n.textContent=t.texto),r?.classList.replace(`bg-suave`,t.aberta?`bg-[#2e9e50]`:`bg-ketchup`)}

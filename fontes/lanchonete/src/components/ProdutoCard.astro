@@ -1,0 +1,29 @@
+---
+import type { Produto } from "../data/cardapio";
+import { reais } from "../lib/pedido";
+import Ilustracao from "./Ilustracao.astro";
+
+interface Props {
+  produto: Produto;
+}
+
+const { produto } = Astro.props;
+---
+
+<article class="flex flex-col overflow-hidden rounded-2xl border border-borda bg-superficie">
+  <Ilustracao desenho={produto.desenho} />
+  <div class="flex flex-1 flex-col p-4">
+    <h3 class="text-lg font-bold">{produto.nome}</h3>
+    <p class="mt-1 text-sm text-suave">{produto.descricao}</p>
+    <div class="mt-auto flex items-center justify-between gap-3 pt-4">
+      <p class="font-display text-xl font-extrabold">{reais(produto.preco)}</p>
+      <button
+        type="button"
+        data-adicionar={produto.id}
+        class="rounded-full bg-ketchup px-4 py-2 font-semibold text-ketchup-texto hover:brightness-110"
+      >
+        Adicionar<span class="sr-only"> {produto.nome}</span>
+      </button>
+    </div>
+  </div>
+</article>

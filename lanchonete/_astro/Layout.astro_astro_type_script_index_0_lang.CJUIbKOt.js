@@ -1,0 +1,1 @@
+import{i as e}from"./carrinho.D7MIJnsi.js";var t=()=>{for(let t of document.querySelectorAll(`[data-contador]`))t.textContent=String(e())};t(),document.addEventListener(`carrinho`,t);

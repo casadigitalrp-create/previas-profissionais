@@ -1,6 +1,6 @@
 # Catálogo de modelos da CasaDigitalRP
 
-A página inicial (`index.html`) apresenta os modelos por estilo e código (M01 a M11), sem nomes de clientes, com filtros por segmento e formato e botão de WhatsApp com o modelo escolhido. Site estático de apresentação de dez propostas visuais. Seis modelos são publicados neste repositório; quatro modelos anteriores são vinculados na página inicial.
+A página inicial (`index.html`) apresenta os modelos por estilo e código (M01 a M12), sem nomes de clientes, com filtros por segmento e formato e botão de WhatsApp com o modelo escolhido. Site estático de apresentação de dez propostas visuais. Seis modelos são publicados neste repositório; quatro modelos anteriores são vinculados na página inicial.
 
 ## Novos modelos
 
@@ -9,6 +9,7 @@ A página inicial (`index.html`) apresenta os modelos por estilo e código (M01 
 - Cristhian Alexandre V3: `cristhian-v3/`
 - Cristhian Alexandre V4: `cristhian-v4/`
 - Tiago Jacinto: `tiago-jacinto/`
+- Lanche do Bairro (pedidos online, marca fictícia): `lanchonete/`, gerado a partir de `fontes/lanchonete/`
 - Construtora TN (multipáginas): `construtora-tn/`, gerado a partir de `fontes/construtora-tn/` (`pnpm install && pnpm build`, Node 24)
 
 Estas páginas são demonstrações para avaliação. Informações profissionais, textos, imagens e contatos provisórios exigem validação antes de qualquer site final. Os HTMLs têm `noindex, nofollow` e um aviso visual. As fontes originais continuam nas respectivas pastas de `C:\TIC\Projetos\Laboratorios`.

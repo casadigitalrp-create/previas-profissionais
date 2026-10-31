@@ -1,0 +1,23 @@
+---
+// Mostra se a loja está aberta. Calculado no navegador, porque o site é estático.
+---
+
+<p
+  data-status-loja
+  class="inline-flex items-center gap-2 rounded-full border border-borda bg-superficie px-4 py-1.5 text-sm font-semibold"
+>
+  <span class="size-2.5 rounded-full bg-suave" data-ponto></span>
+  <span data-texto>Confira o horário de funcionamento</span>
+</p>
+
+<script>
+  import { situacaoLoja } from "../lib/pedido";
+
+  const s = situacaoLoja();
+  for (const el of document.querySelectorAll<HTMLElement>("[data-status-loja]")) {
+    const texto = el.querySelector("[data-texto]");
+    const ponto = el.querySelector("[data-ponto]");
+    if (texto) texto.textContent = s.texto;
+    ponto?.classList.replace("bg-suave", s.aberta ? "bg-[#2e9e50]" : "bg-ketchup");
+  }
+</script>

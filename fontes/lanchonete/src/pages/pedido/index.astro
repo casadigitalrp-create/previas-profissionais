@@ -1,0 +1,227 @@
+---
+import { bairros, formasPagamento, pedidoMinimo } from "../../data/config";
+import Layout from "../../layouts/Layout.astro";
+import { reais } from "../../lib/pedido";
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+const campo = "mt-1.5 w-full rounded-lg border border-borda bg-fundo px-3 py-2.5";
+---
+
+<Layout titulo="Sua sacola" descricao="Revise o pedido e informe entrega e pagamento.">
+  <div class="mx-auto max-w-6xl px-4 pt-10">
+    <h1 class="text-4xl font-extrabold">Sua sacola</h1>
+  </div>
+
+  <div id="vazia" class="mx-auto max-w-6xl px-4 pt-6" hidden>
+    <div class="rounded-2xl border border-borda bg-superficie p-10 text-center">
+      <p class="text-xl font-semibold">Sua sacola está vazia.</p>
+      <a href={`${base}cardapio/`} class="mt-5 inline-block rounded-full bg-ketchup px-6 py-3 font-semibold text-ketchup-texto">Ver cardápio</a>
+    </div>
+  </div>
+
+  <form id="checkout" class="mx-auto grid max-w-6xl gap-8 px-4 pt-6 lg:grid-cols-[1.3fr_1fr]" novalidate hidden>
+    <div class="space-y-6">
+      <section class="rounded-2xl border border-borda bg-superficie p-5" aria-labelledby="t-itens">
+        <h2 id="t-itens" class="text-xl font-bold">Itens</h2>
+        <ul id="itens" class="mt-3 divide-y divide-borda"></ul>
+        <a href={`${base}cardapio/`} class="mt-3 inline-block font-semibold text-ketchup hover:underline">+ Adicionar mais itens</a>
+      </section>
+
+      <section class="space-y-4 rounded-2xl border border-borda bg-superficie p-5" aria-labelledby="t-voce">
+        <h2 id="t-voce" class="text-xl font-bold">Seus dados</h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block font-medium">Nome<input name="nome" autocomplete="name" required class={campo} /></label>
+          <label class="block font-medium">
+            WhatsApp
+            <input name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required class={campo} />
+          </label>
+        </div>
+      </section>
+
+      <section class="space-y-4 rounded-2xl border border-borda bg-superficie p-5" aria-labelledby="t-entrega">
+        <h2 id="t-entrega" class="text-xl font-bold">Entrega</h2>
+        <div class="grid grid-cols-2 gap-3" role="radiogroup" aria-labelledby="t-entrega">
+          <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-borda p-3 has-checked:border-ketchup">
+            <input type="radio" name="tipo" value="entrega" checked class="accent-[var(--ketchup)]" /> Entregar em casa
+          </label>
+          <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-borda p-3 has-checked:border-ketchup">
+            <input type="radio" name="tipo" value="retirada" class="accent-[var(--ketchup)]" /> Retirar no balcão
+          </label>
+        </div>
+        <div id="endereco" class="grid gap-4 sm:grid-cols-[1fr_8rem]">
+          <label class="block font-medium sm:col-span-2">
+            Bairro
+            <select name="bairro" required class={campo}>
+              <option value="">Escolha o bairro</option>
+              {bairros.map((b) => <option value={b.nome}>{`${b.nome} (${reais(b.taxa)})`}</option>)}
+            </select>
+          </label>
+          <label class="block font-medium">Rua<input name="rua" autocomplete="address-line1" required class={campo} /></label>
+          <label class="block font-medium">Número<input name="numero" inputmode="numeric" required class={campo} /></label>
+          <label class="block font-medium">Complemento<input name="complemento" autocomplete="address-line2" class={campo} /></label>
+          <label class="block font-medium">Referência<input name="referencia" class={campo} /></label>
+        </div>
+      </section>
+
+      <section class="space-y-4 rounded-2xl border border-borda bg-superficie p-5" aria-labelledby="t-pag">
+        <h2 id="t-pag" class="text-xl font-bold">Pagamento</h2>
+        <div class="grid gap-3 sm:grid-cols-3" role="radiogroup" aria-labelledby="t-pag">
+          {
+            formasPagamento.map((f, i) => (
+              <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-borda p-3 has-checked:border-ketchup">
+                <input type="radio" name="pagamento" value={f.id} checked={i === 0} class="accent-[var(--ketchup)]" />
+                {f.rotulo}
+              </label>
+            ))
+          }
+        </div>
+        <label id="troco" class="block font-medium" hidden>
+          Troco para quanto? (opcional)
+          <input name="troco" inputmode="decimal" placeholder="Ex.: 100" class={campo} />
+        </label>
+        <label class="block font-medium">
+          Observação do pedido
+          <textarea name="observacao" rows="2" maxlength="300" class={campo}></textarea>
+        </label>
+      </section>
+    </div>
+
+    <aside class="h-fit space-y-4 rounded-2xl border border-borda bg-superficie p-5 lg:sticky lg:top-24" aria-labelledby="t-resumo">
+      <h2 id="t-resumo" class="text-xl font-bold">Resumo</h2>
+      <dl class="space-y-2">
+        <div class="flex justify-between"><dt class="text-suave">Subtotal</dt><dd id="v-sub"></dd></div>
+        <div class="flex justify-between"><dt class="text-suave">Entrega</dt><dd id="v-taxa"></dd></div>
+        <div class="flex justify-between border-t border-borda pt-2 text-xl font-extrabold"><dt>Total</dt><dd id="v-total"></dd></div>
+      </dl>
+      <p id="minimo" class="rounded-lg bg-superficie-2 p-3 text-sm" hidden>Pedido mínimo para entrega: {reais(pedidoMinimo)}.</p>
+      <p id="erro" class="font-semibold text-ketchup" role="alert"></p>
+      <button type="submit" id="enviar" class="w-full rounded-full bg-ketchup px-6 py-4 text-lg font-semibold text-ketchup-texto hover:brightness-110 disabled:opacity-60">
+        Fazer pedido
+      </button>
+      <p class="text-xs text-suave">
+        Modelo demonstrativo: o pedido é montado e exibido, mas não é enviado a nenhuma loja.
+      </p>
+    </aside>
+  </form>
+</Layout>
+
+<script>
+  import { adicionais, produtos } from "../../data/cardapio";
+  import { integracao, pedidoMinimo } from "../../data/config";
+  import { alterarQuantidade, lerCarrinho } from "../../lib/carrinho";
+  import { type DadosCheckout, montarPedido, precoUnitario, reais, subtotal, taxaDoBairro } from "../../lib/pedido";
+
+  const form = document.getElementById("checkout") as HTMLFormElement;
+  const $ = (id: string) => document.getElementById(id) as HTMLElement;
+  const valor = (n: string) => String(new FormData(form).get(n) ?? "");
+
+  function render() {
+    const itens = lerCarrinho();
+    $("vazia").hidden = itens.length > 0;
+    form.hidden = itens.length === 0;
+    const lista = $("itens");
+    lista.replaceChildren();
+    for (const i of itens) {
+      const p = produtos.find((x) => x.id === i.produtoId);
+      const li = document.createElement("li");
+      li.className = "flex items-center justify-between gap-3 py-3";
+      const extras = i.adicionais.length ? `<p class="text-sm text-suave">+ ${i.adicionais.map((id) => adicionais.find((a) => a.id === id)?.nome ?? id).join(", ")}</p>` : "";
+      const obs = i.observacao ? `<p class="text-sm text-suave">Obs.: ${i.observacao.replace(/[<>&]/g, "")}</p>` : "";
+      li.innerHTML = `<div><p class="font-semibold">${p?.nome ?? i.produtoId}</p>${extras}${obs}<p class="text-sm">${reais(precoUnitario(i) * i.quantidade)}</p></div>
+        <div class="flex shrink-0 items-center rounded-full border border-borda">
+          <button type="button" data-chave="${i.chave}" data-delta="-1" class="size-9" aria-label="Diminuir ${p?.nome}">−</button>
+          <span class="w-6 text-center font-bold">${i.quantidade}</span>
+          <button type="button" data-chave="${i.chave}" data-delta="1" class="size-9" aria-label="Aumentar ${p?.nome}">+</button>
+        </div>`;
+      lista.append(li);
+    }
+    totais();
+  }
+
+  function totais() {
+    const entrega = valor("tipo") === "entrega";
+    const sub = subtotal(lerCarrinho());
+    const taxa = entrega ? taxaDoBairro(valor("bairro")) : 0;
+    $("v-sub").textContent = reais(sub);
+    $("v-taxa").textContent = !entrega ? "Grátis" : valor("bairro") ? reais(taxa) : "Escolha o bairro";
+    $("v-total").textContent = reais(sub + taxa);
+    $("minimo").hidden = !(entrega && sub < pedidoMinimo);
+    $("endereco").hidden = !entrega;
+    for (const el of $("endereco").querySelectorAll<HTMLInputElement>("[required]")) el.disabled = !entrega;
+    $("troco").hidden = valor("pagamento") !== "dinheiro";
+  }
+
+  $("itens").addEventListener("click", (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>("[data-chave]");
+    if (b) alterarQuantidade(b.dataset.chave ?? "", Number(b.dataset.delta));
+  });
+  document.addEventListener("carrinho", render);
+  form.addEventListener("input", () => {
+    totais();
+    $("erro").textContent = "";
+  });
+  form.addEventListener("change", totais);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const itens = lerCarrinho();
+    const entrega = valor("tipo") === "entrega";
+    const faltando = [...form.querySelectorAll<HTMLInputElement>("[required]:not(:disabled)")].find((c) => !c.value.trim());
+    const telefone = valor("telefone").replace(/\D/g, "");
+    let erro = "";
+    if (faltando) erro = "Preencha os campos obrigatórios.";
+    else if (telefone.length < 10) erro = "Confira o número de WhatsApp, com DDD.";
+    else if (entrega && subtotal(itens) < pedidoMinimo) erro = `O pedido mínimo para entrega é ${reais(pedidoMinimo)}.`;
+    $("erro").textContent = erro;
+    if (erro) {
+      (faltando ?? form.querySelector<HTMLElement>('[name="telefone"]'))?.focus();
+      return;
+    }
+
+    const troco = Number(valor("troco").replace(",", "."));
+    const dados: DadosCheckout = {
+      nome: valor("nome"),
+      telefone,
+      tipo: entrega ? "entrega" : "retirada",
+      bairro: valor("bairro"),
+      rua: valor("rua"),
+      numero: valor("numero"),
+      complemento: valor("complemento"),
+      referencia: valor("referencia"),
+      pagamento: valor("pagamento") as DadosCheckout["pagamento"],
+      trocoPara: troco > 0 ? Math.round(troco * 100) : null,
+      observacao: valor("observacao"),
+    };
+    const pedido = montarPedido(itens, dados);
+    const botao = $("enviar") as HTMLButtonElement;
+
+    if (integracao.webhookUrl) {
+      botao.disabled = true;
+      botao.textContent = "Enviando…";
+      try {
+        const r = await fetch(integracao.webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(pedido),
+          signal: AbortSignal.timeout(10000),
+        });
+        if (!r.ok) throw new Error(String(r.status));
+      } catch {
+        $("erro").textContent = "Não conseguimos enviar agora. Tente de novo em instantes.";
+        botao.disabled = false;
+        botao.textContent = "Fazer pedido";
+        return;
+      }
+    }
+
+    try {
+      sessionStorage.setItem("ultimo-pedido", JSON.stringify(pedido));
+    } catch {
+      /* sem armazenamento: a página de confirmação mostra aviso */
+    }
+    localStorage.removeItem("lanche-do-bairro-carrinho-v1");
+    location.href = `${import.meta.env.BASE_URL.replace(/\/?$/, "/")}pedido/confirmado/`;
+  });
+
+  render();
+</script>

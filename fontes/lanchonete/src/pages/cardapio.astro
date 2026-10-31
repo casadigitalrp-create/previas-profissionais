@@ -1,0 +1,58 @@
+---
+import DialogoProduto from "../components/DialogoProduto.astro";
+import ProdutoCard from "../components/ProdutoCard.astro";
+import StatusLoja from "../components/StatusLoja.astro";
+import { categorias, produtos } from "../data/cardapio";
+import Layout from "../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+---
+
+<Layout titulo="Cardápio" descricao="Cardápio completo com lanches, porções, bebidas e sobremesas. Peça online.">
+  <section class="xadrez border-b border-borda">
+    <div class="mx-auto max-w-6xl px-4 py-12">
+      <StatusLoja />
+      <h1 class="mt-4 text-5xl font-extrabold">Cardápio</h1>
+      <p class="mt-2 text-suave">Toque em “Adicionar” para escolher adicionais e colocar na sacola.</p>
+    </div>
+  </section>
+
+  <nav aria-label="Categorias" class="sticky top-16 z-30 border-b border-borda bg-fundo/95 backdrop-blur">
+    <ul class="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 py-3">
+      {
+        categorias.map((c) => (
+          <li>
+            <a href={`#${c.id}`} class="block rounded-full border border-borda bg-superficie px-4 py-2 font-semibold whitespace-nowrap hover:border-ketchup">
+              {c.nome}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  {
+    categorias.map((c) => (
+      <section id={c.id} class="mx-auto max-w-6xl px-4 pt-12" aria-labelledby={`t-${c.id}`}>
+        <h2 id={`t-${c.id}`} class="text-3xl font-extrabold">
+          {c.nome}
+        </h2>
+        <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {produtos
+            .filter((p) => p.categoria === c.id)
+            .map((p) => (
+              <ProdutoCard produto={p} />
+            ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <div class="mx-auto max-w-6xl px-4 pt-12 text-center">
+    <a href={`${base}pedido/`} class="inline-block rounded-full bg-ketchup px-8 py-4 text-lg font-semibold text-ketchup-texto hover:brightness-110">
+      Ver sacola e finalizar
+    </a>
+  </div>
+
+  <DialogoProduto />
+</Layout>

@@ -1,0 +1,71 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+const etapas = ["Recebido", "Em preparo", "Saiu para entrega", "Entregue"];
+---
+
+<Layout titulo="Pedido confirmado" descricao="Confirmação do pedido.">
+  <div class="mx-auto max-w-3xl px-4 pt-12">
+    <div id="sem-pedido" hidden class="rounded-2xl border border-borda bg-superficie p-10 text-center">
+      <p class="text-xl font-semibold">Nenhum pedido recente por aqui.</p>
+      <a href={`${base}cardapio/`} class="mt-5 inline-block rounded-full bg-ketchup px-6 py-3 font-semibold text-ketchup-texto">Ver cardápio</a>
+    </div>
+
+    <div id="com-pedido" hidden>
+      <p class="text-5xl" aria-hidden="true">🍔</p>
+      <h1 class="mt-3 text-4xl font-extrabold">Pedido recebido!</h1>
+      <p class="mt-2 text-lg text-suave">Número do pedido: <strong id="numero" class="text-texto"></strong></p>
+
+      <ol class="mt-8 grid grid-cols-4 gap-2" aria-label="Andamento do pedido">
+        {
+          etapas.map((e, i) => (
+            <li class="text-center">
+              <span class={`mx-auto block h-2 rounded-full ${i === 0 ? "bg-ketchup" : "bg-borda"}`} />
+              <span class={`mt-2 block text-xs font-semibold sm:text-sm ${i === 0 ? "" : "text-suave"}`}>
+                {e}
+                {i === 0 && <span class="sr-only"> (etapa atual)</span>}
+              </span>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mt-4 text-sm text-suave">
+        Na versão final, cada mudança de etapa chega no WhatsApp do cliente, disparada pela automação.
+      </p>
+
+      <section class="mt-8 rounded-2xl border border-borda bg-superficie p-5" aria-labelledby="t-resumo">
+        <h2 id="t-resumo" class="text-xl font-bold">Resumo</h2>
+        <pre id="resumo" class="mt-3 font-sans text-sm whitespace-pre-wrap"></pre>
+      </section>
+
+      <details class="mt-6 rounded-2xl border border-dashed border-borda p-5">
+        <summary class="cursor-pointer font-semibold">Para a automação: dados enviados (JSON)</summary>
+        <p class="mt-2 text-sm text-suave">
+          É isso que o n8n recebe no webhook. Valores em centavos. Formato descrito em docs/contrato-pedido.md.
+        </p>
+        <pre id="json" class="mt-3 max-h-96 overflow-auto rounded-lg bg-escuro p-4 text-xs text-escuro-texto"></pre>
+      </details>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { type Pedido, textoWhatsapp } from "../../lib/pedido";
+
+  let pedido: Pedido | null = null;
+  try {
+    pedido = JSON.parse(sessionStorage.getItem("ultimo-pedido") ?? "null");
+  } catch {
+    pedido = null;
+  }
+  const $ = (id: string) => document.getElementById(id) as HTMLElement;
+  $("sem-pedido").hidden = Boolean(pedido);
+  $("com-pedido").hidden = !pedido;
+  if (pedido) {
+    $("numero").textContent = pedido.id;
+    $("resumo").textContent = textoWhatsapp(pedido).replaceAll("*", "");
+    $("json").textContent = JSON.stringify(pedido, null, 2);
+    document.dispatchEvent(new CustomEvent("carrinho"));
+  }
+</script>

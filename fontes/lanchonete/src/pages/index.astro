@@ -1,0 +1,96 @@
+---
+import DialogoProduto from "../components/DialogoProduto.astro";
+import Ilustracao from "../components/Ilustracao.astro";
+import ProdutoCard from "../components/ProdutoCard.astro";
+import StatusLoja from "../components/StatusLoja.astro";
+import { produtos } from "../data/cardapio";
+import { bairros, loja, pedidoMinimo } from "../data/config";
+import Layout from "../layouts/Layout.astro";
+import { reais } from "../lib/pedido";
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+const destaques = produtos.filter((p) => p.destaque);
+const passos = [
+  {
+    titulo: "Monte o pedido",
+    texto: "Escolha no cardápio, com adicionais e observações do seu jeito.",
+  },
+  {
+    titulo: "Confirme em 1 minuto",
+    texto: "Entrega ou retirada, endereço e forma de pagamento. Sem cadastro.",
+  },
+  { titulo: "Acompanhe", texto: "Você recebe o número do pedido e o status pelo WhatsApp." },
+];
+---
+
+<Layout titulo="Peça online" descricao={`${loja.nome}: lanches, porções e milkshakes com pedido online e entrega.`}>
+  <section class="xadrez border-b border-borda">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-[1.1fr_1fr] md:py-20">
+      <div>
+        <StatusLoja />
+        <h1 class="mt-5 text-5xl leading-[0.95] font-extrabold md:text-7xl">
+          Lanche de verdade, <span class="text-ketchup">do jeito que você pede.</span>
+        </h1>
+        <p class="mt-5 max-w-md text-lg text-suave">
+          Monte seu pedido aqui no site e receba em casa ou retire no balcão. Sem app, sem cadastro.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={`${base}cardapio/`} class="rounded-full bg-ketchup px-7 py-3.5 text-lg font-semibold text-ketchup-texto hover:brightness-110">
+            Ver cardápio e pedir
+          </a>
+        </div>
+      </div>
+      <div class="mx-auto w-full max-w-md overflow-hidden rounded-[2rem] border-4 border-escuro shadow-[10px_10px_0_var(--escuro)]">
+        <Ilustracao desenho="duplo" />
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pt-16" aria-labelledby="destaques">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 id="destaques" class="text-3xl font-extrabold md:text-4xl">Os mais pedidos</h2>
+      <a href={`${base}cardapio/`} class="font-semibold text-ketchup hover:underline">Cardápio completo →</a>
+    </div>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {destaques.map((p) => <ProdutoCard produto={p} />)}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pt-20" aria-labelledby="como">
+    <h2 id="como" class="text-3xl font-extrabold md:text-4xl">Pedir é rapidinho</h2>
+    <ol class="mt-8 grid gap-5 md:grid-cols-3">
+      {
+        passos.map((p, i) => (
+          <li class="rounded-2xl border border-borda bg-superficie p-6">
+            <span class="grid size-11 place-items-center rounded-full bg-mostarda font-display text-xl font-extrabold text-escuro">
+              {i + 1}
+            </span>
+            <h3 class="mt-4 text-xl font-bold">{p.titulo}</h3>
+            <p class="mt-1 text-suave">{p.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pt-20" aria-labelledby="entrega">
+    <div class="rounded-3xl bg-escuro p-7 text-escuro-texto md:p-10">
+      <h2 id="entrega" class="text-3xl font-extrabold">Onde entregamos</h2>
+      <p class="mt-2 opacity-80">Pedido mínimo de {reais(pedidoMinimo)}. Retirada no balcão sem taxa.</p>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          bairros.map((b) => (
+            <li class="rounded-xl bg-white/10 p-4">
+              <p class="font-semibold">{b.nome}</p>
+              <p class="text-sm opacity-80">
+                {reais(b.taxa)} · {b.tempo}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <DialogoProduto />
+</Layout>
