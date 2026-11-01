@@ -5,7 +5,7 @@ A página inicial (`index.html`) apresenta os modelos por estilo e código (cód
 ## Novos modelos
 
 - M02 Psicologia · Sálvia: `modelo-psicologia/`
-- M03 Nutrição · Brisa: `modelo-nutricao/`
+- M03 Nutrição esportiva · Ritmo: `modelo-nutricao/`
 - M04 Personal trainer · Pop: `modelo-personal/`
 - M05 Fisioterapia · Traço: `modelo-fisioterapia/`
 - Lanche do Bairro (pedidos online, marca fictícia): `lanchonete/`, gerado a partir de `fontes/lanchonete/`
@@ -25,7 +25,7 @@ O arquivo `.nojekyll` permite que o GitHub Pages sirva os recursos do Astro em d
 
 ## Modelos convertidos
 
-M02 a M05 nasceram como prévias de um dentista e foram convertidos para psicologia, nutrição, personal trainer e
+M02, M04 e M05 nasceram como prévias de um dentista e foram convertidos para psicologia, nutrição, personal trainer e
 fisioterapia (textos, ferramenta, glossário, dúvidas, imagens com dente e monogramas), com nomes fictícios.
 O código-fonte original não está neste repositório; a conversão foi feita sobre o HTML gerado.
 
@@ -41,3 +41,7 @@ M08 e M09 são versões distintas e foram preservadas. Os códigos dos modelos s
 Para reconstruir M07: em `fontes/modelo-odontologia`, execute `pnpm install --frozen-lockfile` e `pnpm build` com Node 24; copie o conteúdo de `dist/` para `modelo-odontologia/`. A configuração usa a base `/previas-profissionais/modelo-odontologia`.
 
 M08 preserva a saída estática revisada do repositório original. O README da fonte registra as limitações de reconstrução dessa versão. Não substituir essa saída por um build sem revisar os avisos demonstrativos e contatos.
+
+## M03 - Nutrição esportiva · Ritmo
+
+Proposta visual reconstruída em HTML, CSS e JavaScript, em `modelo-nutricao/`. Imagens conceituais de corrida e alimentação geradas por IA e armazenadas em `assets/`. O seletor de objetivos e o resumo preparatório funcionam apenas no navegador, sem envio ou persistência. Marca fictícia, sem dados profissionais ou agendamento reais. A versão anterior permanece no histórico Git.
