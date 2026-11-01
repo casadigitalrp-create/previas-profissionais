@@ -1,6 +1,6 @@
 # Catálogo de modelos da CasaDigitalRP
 
-A página inicial (`index.html`) apresenta os modelos por estilo e código (M01 a M12), sem nomes de clientes, com filtros por segmento e formato e botão de WhatsApp com o modelo escolhido. Site estático de apresentação de dez propostas visuais. Seis modelos são publicados neste repositório; quatro modelos anteriores são vinculados na página inicial.
+A página inicial (`index.html`) apresenta os modelos por estilo e código (M01 a M12), sem nomes de clientes, com filtros por segmento e formato e botão de WhatsApp com o modelo escolhido. Site estático com 12 modelos publicados neste repositório. Todos os links de modelos da página inicial apontam para pastas deste catálogo.
 
 ## Novos modelos
 
@@ -29,3 +29,16 @@ O arquivo `.nojekyll` permite que o GitHub Pages sirva os recursos do Astro em d
 M02 a M05 nasceram como prévias de um dentista e foram convertidos para psicologia, nutrição, personal trainer e
 fisioterapia (textos, ferramenta, glossário, dúvidas, imagens com dente e monogramas), com nomes fictícios.
 O código-fonte original não está neste repositório; a conversão foi feita sobre o HTML gerado.
+
+## Modelos centralizados em 01/11/2026
+
+- M07 Odontologia · Mármore: `modelo-odontologia/`; fonte em `fontes/modelo-odontologia/`.
+- M08 Engenharia · Esquadro: `modelo-engenharia/`; fonte em `fontes/modelo-engenharia/`.
+- M09 Serviços técnicos · Compasso: `modelo-servicos-tecnicos/` (HTML, CSS, JavaScript e recursos próprios).
+- M10 Ateliê · Linho: `modelo-atelie/` (site estático editável).
+
+M08 e M09 são versões distintas e foram preservadas. Os repositórios de origem continuam disponíveis com seu histórico e endereços antigos.
+
+Para reconstruir M07: em `fontes/modelo-odontologia`, execute `pnpm install --frozen-lockfile` e `pnpm build` com Node 24; copie o conteúdo de `dist/` para `modelo-odontologia/`. A configuração usa a base `/previas-profissionais/modelo-odontologia`.
+
+M08 preserva a saída estática revisada do repositório original. O README da fonte registra as limitações de reconstrução dessa versão. Não substituir essa saída por um build sem revisar os avisos demonstrativos e contatos.

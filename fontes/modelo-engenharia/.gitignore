@@ -1,0 +1,9 @@
+node_modules
+dist
+.astro
+.env
+.env.*
+.pnpm-store
+.local-build-config.mjs
+.build-local
+.build-v2

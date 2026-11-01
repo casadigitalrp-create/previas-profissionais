@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bcd3ee"/><stop offset=".6" stop-color="#fff1d9"/><stop offset="1" stop-color="#fff"/></linearGradient></defs><rect width="800" height="600" fill="url(#g)"/><rect y="480" width="800" height="120" fill="#8b6b4a"/>
+   <rect x="170" y="210" width="460" height="270" fill="#f1e4cf"/>
+   <rect x="170" y="210" width="460" height="60" fill="#0B1F3A"/>
+   <rect x="170" y="270" width="200" height="210" fill="#e6c9a0"/>
+   <g stroke="#8b6b4a" stroke-width="3"><path d="M170 270H370"/><path d="M170 294H370"/><path d="M170 318H370"/><path d="M170 342H370"/><path d="M170 366H370"/><path d="M170 390H370"/><path d="M170 414H370"/><path d="M170 438H370"/><path d="M170 462H370"/></g>
+   <rect x="430" y="300" width="140" height="180" fill="#16396b"/><rect x="450" y="320" width="100" height="60" fill="#9fc4ee"/>
+   <path d="M610 480l50-120" stroke="#F28C28" stroke-width="14" stroke-linecap="round"/></svg>

@@ -1,0 +1,19 @@
+---
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Rodape from "../components/Rodape.astro";
+import Secoes from "../components/Secoes.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <Header />
+  <main>
+    <aside class="bg-obra px-5 pt-[84px] pb-3 text-center text-sm font-semibold text-marinho-950" aria-label="Aviso da prévia">
+      PRÉVIA PARA APROVAÇÃO — Informações pessoais, serviços, obras, números e imagens são ilustrativos. Contatos e envio de formulário estão desativados.
+    </aside>
+    <Hero />
+    <Secoes />
+  </main>
+  <Rodape />
+</Layout>

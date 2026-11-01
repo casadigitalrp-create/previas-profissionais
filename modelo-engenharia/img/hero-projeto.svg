@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true"><rect width="1600" height="900" fill="#0a3a73"/>
+     <g stroke="#7fb3ff" stroke-opacity=".25" stroke-width="1"><path d="M0 0V900"/><path d="M40 0V900"/><path d="M80 0V900"/><path d="M120 0V900"/><path d="M160 0V900"/><path d="M200 0V900"/><path d="M240 0V900"/><path d="M280 0V900"/><path d="M320 0V900"/><path d="M360 0V900"/><path d="M400 0V900"/><path d="M440 0V900"/><path d="M480 0V900"/><path d="M520 0V900"/><path d="M560 0V900"/><path d="M600 0V900"/><path d="M640 0V900"/><path d="M680 0V900"/><path d="M720 0V900"/><path d="M760 0V900"/><path d="M800 0V900"/><path d="M840 0V900"/><path d="M880 0V900"/><path d="M920 0V900"/><path d="M960 0V900"/><path d="M1000 0V900"/><path d="M1040 0V900"/><path d="M1080 0V900"/><path d="M1120 0V900"/><path d="M1160 0V900"/><path d="M1200 0V900"/><path d="M1240 0V900"/><path d="M1280 0V900"/><path d="M1320 0V900"/><path d="M1360 0V900"/><path d="M1400 0V900"/><path d="M1440 0V900"/><path d="M1480 0V900"/><path d="M1520 0V900"/><path d="M1560 0V900"/><path d="M0 0H1600"/><path d="M0 40H1600"/><path d="M0 80H1600"/><path d="M0 120H1600"/><path d="M0 160H1600"/><path d="M0 200H1600"/><path d="M0 240H1600"/><path d="M0 280H1600"/><path d="M0 320H1600"/><path d="M0 360H1600"/><path d="M0 400H1600"/><path d="M0 440H1600"/><path d="M0 480H1600"/><path d="M0 520H1600"/><path d="M0 560H1600"/><path d="M0 600H1600"/><path d="M0 640H1600"/><path d="M0 680H1600"/><path d="M0 720H1600"/><path d="M0 760H1600"/><path d="M0 800H1600"/><path d="M0 840H1600"/><path d="M0 880H1600"/></g>
+     <g fill="none" stroke="#e6f0ff" stroke-width="3" stroke-opacity=".85">
+       <rect x="300" y="200" width="1000" height="500"/>
+       <path d="M300 450H760V200M760 450V700M1040 200V450H1300M1040 450V700"/>
+       <path d="M760 330h40M1040 560h-60" stroke="#F28C28"/>
+       <path d="M640 200a60 60 0 0 1 120 0" stroke-width="2"/>
+       <rect x="520" y="200" width="120" height="8"/>
+     </g>
+     <g stroke="#e6f0ff" stroke-width="2" stroke-opacity=".7"><path d="M300 150H1300M300 140v20M1300 140v20M300 750H1300M300 740v20M1300 740v20"/></g>
+     <g fill="#e6f0ff" font-family="monospace" font-size="22" opacity=".8"><text x="800" y="140" text-anchor="middle">12,00 m</text><text x="800" y="790" text-anchor="middle">12,00 m</text></g>
+     <g fill="none" stroke="#F28C28" stroke-width="3"><circle cx="1380" cy="300" r="46"/><path d="M1380 254v92M1334 300h92"/></g></svg>

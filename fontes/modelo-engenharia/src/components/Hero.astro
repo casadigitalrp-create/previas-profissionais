@@ -1,0 +1,38 @@
+---
+import { site, slides, whatsappLink } from "../data/site";
+---
+
+<section id="conteudo" class="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-marinho-950 pt-[72px]">
+  <div class="absolute inset-0 -z-20" aria-hidden="true">
+    {slides.map((s, i) => <img src={s.src} alt="" class="slide absolute inset-0 h-full w-full object-cover" loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} />)}
+  </div>
+  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-marinho-950/95 via-marinho-950/75 to-marinho-900/30" aria-hidden="true"></div>
+  <div class="blueprint absolute inset-0 -z-10 opacity-60" aria-hidden="true"></div>
+
+  <div class="mx-auto w-full max-w-7xl px-5 py-20">
+    <div class="max-w-2xl">
+      <p class="mb-5 inline-block border-l-4 border-obra pl-3 text-xs font-bold tracking-[0.2em] text-obra uppercase sm:text-sm">
+        {site.titulo} · {site.crea}
+      </p>
+      <h1 class="text-[2.1rem] leading-[1.08] font-extrabold text-white sm:text-5xl lg:text-6xl">
+        Construir com solidez é <span class="text-obra">honrar quem confia em você</span>.
+      </h1>
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+        Esta é uma proposta visual para apresentar o trabalho de Tiago Nascimento. A trajetória, os serviços e os dados
+        profissionais serão confirmados antes da versão final.
+      </p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+        <a href={whatsappLink()} class="rounded-sm bg-obra px-7 py-4 text-center font-bold text-marinho-950 shadow-lg shadow-obra/20 transition hover:-translate-y-0.5 hover:bg-obra-600">
+          Ver contato de demonstração
+        </a>
+        <a href="#historia" class="rounded-sm border border-white/40 px-7 py-4 text-center font-semibold text-white transition hover:bg-white/10">
+          Conhecer minha história
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <a href="#servicos" class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 text-white/70 sm:block" aria-label="Rolar para os serviços">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+  </a>
+</section>

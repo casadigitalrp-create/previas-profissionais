@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/montserrat";
+
+@theme {
+  --color-marinho-950: #07152a;
+  --color-marinho-900: #0b1f3a;
+  --color-marinho-800: #16396b;
+  --color-marinho-700: #1f4d8c;
+  --color-obra: #f28c28;
+  --color-obra-600: #d97312;
+  --color-concreto: #f4f5f7;
+  --color-concreto-200: #e3e6ec;
+  --color-texto: #1d2735;
+  --color-suave: #5b6676;
+  --font-display: "Montserrat Variable", system-ui, sans-serif;
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-texto);
+  background: var(--color-concreto);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Textura blueprint sutil */
+.blueprint {
+  background-image:
+    linear-gradient(rgba(127, 179, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127, 179, 255, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.blueprint-claro {
+  background-image:
+    linear-gradient(rgba(11, 31, 58, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 31, 58, 0.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* Slideshow do hero (troca por opacidade, 4 slides x 6s) */
+.slide {
+  opacity: 0;
+  animation: fade 24s infinite;
+}
+.slide:nth-child(1) {
+  animation-delay: 0s;
+}
+.slide:nth-child(2) {
+  animation-delay: 6s;
+}
+.slide:nth-child(3) {
+  animation-delay: 12s;
+}
+.slide:nth-child(4) {
+  animation-delay: 18s;
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  4% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  29% {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.reveal.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .slide {
+    animation: none;
+  }
+  .slide:first-child {
+    opacity: 1;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-obra);
+  outline-offset: 3px;
+}

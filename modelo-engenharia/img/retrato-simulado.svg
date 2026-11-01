@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Retrato ilustrativo de engenheiro civil com capacete (foto simulada)">
+   <defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16396b"/><stop offset="1" stop-color="#0B1F3A"/></linearGradient></defs>
+   <rect width="600" height="750" fill="url(#b)"/>
+   <g stroke="#7fb3ff" stroke-opacity=".12"><path d="M0 0V750M0 0H600"/><path d="M40 0V750M0 50H600"/><path d="M80 0V750M0 100H600"/><path d="M120 0V750M0 150H600"/><path d="M160 0V750M0 200H600"/><path d="M200 0V750M0 250H600"/><path d="M240 0V750M0 300H600"/><path d="M280 0V750M0 350H600"/><path d="M320 0V750M0 400H600"/><path d="M360 0V750M0 450H600"/><path d="M400 0V750M0 500H600"/><path d="M440 0V750M0 550H600"/><path d="M480 0V750M0 600H600"/><path d="M520 0V750M0 650H600"/><path d="M560 0V750M0 700H600"/></g>
+   <path d="M60 750c0-170 110-250 240-250s240 80 240 250z" fill="#F28C28"/>
+   <path d="M300 520l-60 230h120z" fill="#fff" opacity=".9"/>
+   <rect x="262" y="440" width="76" height="90" rx="30" fill="#c98f65"/>
+   <ellipse cx="300" cy="370" rx="92" ry="108" fill="#d9a074"/>
+   <path d="M205 345a95 95 0 0 1 190 0z" fill="#fff"/>
+   <rect x="190" y="338" width="220" height="22" rx="8" fill="#fff"/>
+   <rect x="280" y="262" width="40" height="20" rx="6" fill="#e9eef6"/>
+   <circle cx="262" cy="385" r="7" fill="#2b2b2b"/><circle cx="338" cy="385" r="7" fill="#2b2b2b"/>
+   <path d="M270 430q30 20 60 0" stroke="#7a3d2b" stroke-width="5" fill="none" stroke-linecap="round"/>
+   <text x="300" y="725" text-anchor="middle" font-family="Arial" font-size="20" fill="#0B1F3A" font-weight="700">FOTO SIMULADA</text></svg>
