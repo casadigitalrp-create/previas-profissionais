@@ -19,13 +19,13 @@ O arquivo `.nojekyll` permite que o GitHub Pages sirva os recursos do Astro em d
 
 - Código sequencial `Mxx` que nunca é reaproveitado (o cliente cita o código no WhatsApp).
 - Nome no formato **Profissão · Estilo**: a profissão diz para quem é; o estilo é uma palavra ligada ao visual
-  (material, cor, objeto), nunca o nome de um cliente: Alicerce, Sálvia, Brisa, Pop, Traço, Mármore, Esquadro, Compasso, Linho, Claquete, Balcão.
+  (material, cor, objeto), nunca o nome de um cliente: Alicerce, Sálvia, Ritmo, Pop, Traço, Mármore, Esquadro, Compasso, Linho, Claquete, Balcão.
 - Sem numeração de versão no nome: uma variação ganha nome próprio.
 - Card padronizado: descrição (clima + para quem), 2 etiquetas (formato + recurso principal) e "Indicado para".
 
 ## Modelos convertidos
 
-M02, M04 e M05 nasceram como prévias de um dentista e foram convertidos para psicologia, nutrição, personal trainer e
+M02, M04 e M05 nasceram como prévias de um dentista e foram convertidos para psicologia, personal trainer e
 fisioterapia (textos, ferramenta, glossário, dúvidas, imagens com dente e monogramas), com nomes fictícios.
 O código-fonte original não está neste repositório; a conversão foi feita sobre o HTML gerado.
 
